@@ -1,26 +1,15 @@
-The content below is an example project proposal / requirements document. Replace the text below the lines marked "__TODO__" with details specific to your project. Remove the "TODO" lines.
-
-(__TODO__: your project name)
-
-# Shoppy Shoperson 
+# Checkmate
 
 ## Overview
+There are so many language learning apps on the market, but there aren't a lot that help you learn languages through human-to-human contact outside of tutoring apps. Learn With Me is a web app that connects two users together who each speak a language that the other wants to learn. Users create an account, selecting the language(s) they are proficient in and language(s) they are interested in learning, and Learn With Me will match them with their new study partners. Users can then send direct messages to their study partners through Learn With Me! Outside of one-on-one conversations, users can also post about struggles they're facing when learning their new langauge to everyone, and others can comment on the posts with their own insights.
 
-(__TODO__: a brief one or two paragraph, high-level description of your project)
-
-Remembering what to buy at the grocery store is waaaaay too difficult. Also, shopping for groceries when you're hungry leads to regrettable purchases. Sooo... that's where Shoppy Shoperson comes in!
-
-Shoppy Shoperson is a web app that will allow users to keep track of multiple grocery lists. Users can register and login. Once they're logged in, they can create or view their grocery list. For every list that they have, they can add items to the list or cross off items.
-
+## Team
+I am working on this project with my friend Jenna Han (jennahan@nyu.edu).
 
 ## Data Model
+The application will store Users and Challenges
 
-(__TODO__: a description of your application's data and their relationships to each other) 
-
-The application will store Users, Lists and Items
-
-* users can have multiple lists (via references)
-* each list can have multiple items (by embedding)
+* users can have multiple challenges (via references), sorted between previous challenges and current challenges
 
 (__TODO__: sample documents)
 
@@ -28,30 +17,30 @@ An Example User:
 
 ```javascript
 {
-  username: "shannonshopper",
+  username: "emily<3jenna",
   hash: // a password hash,
-  lists: // an array of references to List documents
+  email: "ilovehamilton@gmail.com",
+  number: "1110001111",
+  photo: //optional profile photo,
+  preferences: {kind:["Fitness", "Diet"], experience: "none", focus: "motivation"},
+  prev_challenges: //an array of references to Challenges documents,
+  curr_challengs: //an array of references to Challenges documents,
+  challengePhotos: //an array of photos for the challenge,            //check this with professor
 }
 ```
 
-An Example List with Embedded Items:
+An Example Challenge:
 
 ```javascript
 {
-  user: // a reference to a User object
-  name: "Breakfast foods",
-  items: [
-    { name: "pancakes", quantity: "9876", checked: false},
-    { name: "ramen", quantity: "2", checked: true},
-  ],
-  createdAt: // timestamp
+  title: "Wake Up",
+  duration: [new Date("2023-10-30"), new Date("2023-11-30")],
+  challengePhotos: //an array of photos for the challenge,
+  completed: false
 }
 ```
 
-
 ## [Link to Commented First Draft Schema](db.mjs) 
-
-(__TODO__: create a first draft of your Schemas in db.mjs and link to it)
 
 ## Wireframes
 
@@ -88,21 +77,12 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
 
 ## Research Topics
 
-(__TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed)
-
-* (5 points) Integrate user authentication
-    * I'm going to be using passport for user authentication
-    * And account has been made for testing; I'll email you the password
-    * see <code>cs.nyu.edu/~jversoza/ait-final/register</code> for register page
-    * see <code>cs.nyu.edu/~jversoza/ait-final/login</code> for login page
-* (4 points) Perform client side form validation using a JavaScript library
-    * see <code>cs.nyu.edu/~jversoza/ait-final/my-form</code>
-    * if you put in a number that's greater than 5, an error message will appear in the dom
-* (5 points) vue.js
-    * used vue.js as the frontend framework; it's a challenging library to learn, so I've assigned it 5 points
-
-10 points total out of 8 required points (___TODO__: addtional points will __not__ count for extra credit)
-
+* (2 points) Integrate user authentication
+    * We're going to be using passport for user authentication
+* (3 points) Recommendation Algorithm
+    * We're going to be implementing a recommendation algorithm that recommends to the user challenges based on their survey preferences
+* (3 points) React Native
+    * We will be learning React Native (and potentially Firebase) to create the frontend and store users and challenges
 
 ## [Link to Initial Main Project File](app.mjs) 
 
@@ -110,8 +90,4 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
 
 ## Annotations / References Used
 
-(__TODO__: list any tutorials/references/etc. that you've based your code off of)
-
-1. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
-2. [tutorial on vue.js](https://vuejs.org/v2/guide/) - (add link to source code that was based on this)
 
