@@ -88,7 +88,7 @@ You can test out the prototype [here](https://www.figma.com/proto/895qnnItxZDRUS
 * (3 points) Recommendation Algorithm
     * We're going to be implementing a recommendation algorithm that recommends to the user challenges based on their survey preferences. We're not sure how complex we want it to be yet (and whether or not AI will be used in the recommendation). The number of points assigned here might be adjusted later on based on how complex the algorithm is.
 * (2 points) React Native
-    * We will be learning React Native (and potentially Firebase) to create the frontend. While React and React Native share some similarities, it is still a completely different language. We also need to use React Native to provide support for iOS and Android. If we use Firebase, we will have to learn how to integrate it into the app and potentially learn how to use its cloud messaging systems.
+    * We will be learning React Native (and potentially Firebase) to create the frontend and the storage database. While React and React Native share some similarities, it is still a completely different language. We also need to use React Native to provide support for iOS and Android. If we use Firebase, we will have to learn how to integrate it into the app and potentially learn how to use its cloud messaging systems.
 
 ## [Link to Initial Main Project File](app.mjs) 
 
