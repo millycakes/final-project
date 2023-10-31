@@ -31,7 +31,7 @@ const Challenge = new mongoose.Schema({
 
 //model our schemas
 mongoose.model('User', User);
-mongoose.model('Challenge', Challege);
+mongoose.model('Challenge', Challenge);
 
 //connect to mongoose
 mongoose.connect(process.env.DSN, mongooseOpts)

@@ -1,7 +1,9 @@
 # Checkmate
 
 ## Overview
-There are so many language learning apps on the market, but there aren't a lot that help you learn languages through human-to-human contact outside of tutoring apps. Learn With Me is a web app that connects two users together who each speak a language that the other wants to learn. Users create an account, selecting the language(s) they are proficient in and language(s) they are interested in learning, and Learn With Me will match them with their new study partners. Users can then send direct messages to their study partners through Learn With Me! Outside of one-on-one conversations, users can also post about struggles they're facing when learning their new langauge to everyone, and others can comment on the posts with their own insights.
+I frequently see my friends diligently working on their assignments and achieving their academic goals. However, I also see the same friends (and myself) pushing back personal goals like going to the gym, cooking more often, or spending less money.
+
+Checkmate is a habit tracker app that helps users, especially college students, reach their personal goals as effectively as their academic goals by enforcing social and structural accountability. Users can join habit-building challenges and bet money on themselves. For the duration of the challenge, they will have to upload a photo of themselves completing the challenge as proof of completion. If they complete the goal they set for themselves, they win a small monetary prize. If they fail to achieve their goal, they lose a percentage of the money they bet.
 
 ## Team
 I am working on this project with my friend Jenna Han (jennahan@nyu.edu).
@@ -10,8 +12,6 @@ I am working on this project with my friend Jenna Han (jennahan@nyu.edu).
 The application will store Users and Challenges
 
 * users can have multiple challenges (via references), sorted between previous challenges and current challenges
-
-(__TODO__: sample documents)
 
 An Example User:
 
@@ -42,52 +42,44 @@ An Example Challenge:
 
 ## [Link to Commented First Draft Schema](db.mjs) 
 
-## Wireframes
+## Key Screens
 
-(__TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc.)
+### Set goals and get held accountable
+- Customized feed of challenges based on your goals and experience
+- Snap a photo of you working on your goal by a set deadline as proof of completion
+- Your proof of completion will be visible to others working on the same challenge
 
-/list/create - page for creating a new shopping list
+### Bet money on yourself and earn monetary prizes
+- It’s like a swear jar!
+- Deposit money. You’ll earn a prize if you complete your goal and lose a part of your deposit if you fail to
+- Redeem prize money for fun gift cards
 
-![list create](documentation/list-create.png)
+### Join the community and spread support
+- View other goal-getters’ proof of completion and hold them accountable
+- Send support with reactions
+- Track your progress compared to other group members
 
-/list - page for showing all shopping lists
-
-![list](documentation/list.png)
-
-/list/slug - page for showing specific shopping list
-
-![list](documentation/list-slug.png)
+### All screens
+View all screens on 
 
 ## Site map
 
-(__TODO__: draw out a site map that shows how pages are related to each other)
-
-Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia/commons/2/20/Sitemap_google.jpg), but you can create one without the screenshots, drop shadows, etc. ... just names of pages and where they flow to.
+You can test out the prototype [here](https://www.figma.com/proto/895qnnItxZDRUSWQtnc2pR/CheckMate?page-id=340%3A5213&type=design&node-id=388-4889&viewport=401%2C-2535%2C0.51&t=I7VivEIM5ZO5Hf6y-1&scaling=scale-down&starting-point-node-id=388%3A4889&mode=design)
 
 ## User Stories or Use Cases
 
-(__TODO__: write out how your application will be used through [user stories](http://en.wikipedia.org/wiki/User_story#Format) and / or [use cases](https://en.wikipedia.org/wiki/Use_case))
-
-1. as non-registered user, I can register a new account with the site
-2. as a user, I can log in to the site
-3. as a user, I can create a new grocery list
-4. as a user, I can view all of the grocery lists I've created in a single list
-5. as a user, I can add items to an existing grocery list
-6. as a user, I can cross off items in an existing grocery list
-
 ## Research Topics
 
-* (2 points) Integrate user authentication
-    * We're going to be using passport for user authentication
+* (3 points) Integrate user authentication
+    * We're going to be using passport for user authentication. We will be using it for both normal email and password login and other login options
+    like Google login.
+    * When testing out the app, you can either create your own account or use a test user account that will be provided here: ****
 * (3 points) Recommendation Algorithm
-    * We're going to be implementing a recommendation algorithm that recommends to the user challenges based on their survey preferences
-* (3 points) React Native
-    * We will be learning React Native (and potentially Firebase) to create the frontend and store users and challenges
+    * We're going to be implementing a recommendation algorithm that recommends to the user challenges based on their survey preferences. We're not sure how complex we want it to be yet (and whether or not AI will be used in the recommendation). The number of points assigned here might be adjusted later on based on how complex the algorithm is.
+* (2 points) React Native
+    * We will be learning React Native (and potentially Firebase) to create the frontend. While React and React Native share some similarities, it is still a completely different language. We also need to use React Native to provide support for iOS and Android. If we use Firebase, we will have to learn how to integrate it into the app and potentially learn how to use its cloud messaging systems.
 
 ## [Link to Initial Main Project File](app.mjs) 
 
-(__TODO__: create a skeleton Express application with a package.json, app.mjs, views folder, etc. ... and link to your initial app.mjs)
-
 ## Annotations / References Used
-
 
