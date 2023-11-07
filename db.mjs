@@ -1,16 +1,43 @@
 import mongoose from 'mongoose';
 import './config.mjs';
+const { Schema } = mongoose;
 
-const mongooseOpts = {};
+const mongooseOpts = {
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+};
 
 
 //user schema
 const User = new mongoose.Schema({
-	username: String,
-	hash: String,
-    email: String,
-    number: String,
-    photo: String,
+    firstname: {
+        type: String,
+        trim: true
+    },
+    lastname: {
+        type: String,
+        trim: true
+    },
+	username: {
+        type: String,
+        unique: true,
+        trim: true
+    },
+	hash: {
+        type: String,
+        required:true
+    },
+    email: {
+        type: String,
+        required:true,
+        unique: true,
+        trim: true
+    },
+    number: {
+        type: String,
+        unique: true
+    },
+    photo: Buffer,
     preferences: {
         type: Map,
         of: Schema.Types.Mixed 
@@ -24,17 +51,66 @@ const User = new mongoose.Schema({
 const Challenge = new mongoose.Schema({
     title: String,
     duration: [Date],
-    challengePhotos: [String],
+    challengePhotos: [Buffer],
     completed: Boolean
 })
 
+//check if username is unique
+User.statics.uniqueUsername = async function(username) {
+    if (!username) throw new Error('Invalid Username');
+    try {
+        const pattern = new RegExp(`^${username}$`, 'i');
+        const duplicate = await this.findOne({username: { $regex:pattern}});
+        if (duplicate){
+            return false;
+        }
+        return true;
+    }
+    catch (err) {
+        console.log(err);
+        return false;
+    }
+}
+
+//check if email is unique
+User.statics.uniqueEmail = async function(email) {
+    if (!email) throw new Error('Invalid Email');
+    try {
+        const duplicate = await this.findOne({email});
+        if (duplicate){
+            return false;
+        }
+        return true;
+    }
+    catch (err) {
+        console.log(err);
+        return false;
+    }
+}
+
+//check if number is unique
+User.statics.uniqueNumber = async function(number) {
+    if (!number) throw new Error('Invalid Number');
+    try {
+        const duplicate = await this.findOne({number});
+        if (duplicate){
+            return false;
+        }
+        return true;
+    }
+    catch (err) {
+        console.log(err);
+        return false;
+    }
+}
 
 //model our schemas
 mongoose.model('User', User);
 mongoose.model('Challenge', Challenge);
 
+
 //connect to mongoose
-mongoose.connect(process.env.DSN, mongooseOpts)
+mongoose.connect(process.env.MONGO_URI, mongooseOpts)
     .then(()=>{
         console.log('connected to database');
     })
