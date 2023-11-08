@@ -5,8 +5,12 @@
     "env": "^0.0.2",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "express-validator": "^7.0.1",
+    "firebase": "^10.5.2",
     "mocha": "^10.2.0",
-    "mongoose": "^7.6.4"
+    "mongoose": "^7.6.4",
+    "phone": "^3.1.41",
+    "twilio": "^4.19.0"
   },
   "name": "final-project-millycakes",
   "description": "## Overview I frequently see my friends diligently working on their assignments and achieving their academic goals. However, I also see the same friends (and myself) pushing back personal goals like going to the gym, cooking more often, or spending less money.",

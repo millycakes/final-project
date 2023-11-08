@@ -2,14 +2,24 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import mongoose from 'mongoose';
-import './db.mjs';
+import './database/db.mjs';
+import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
 import {router} from './routes/user.mjs';
 
-
 const app = express();
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
+//firebase config
+const firebaseConfig = {
+    apiKey: "AIzaSyCvUR1B6tVKUFRhB8V6NcSo1o4-jXGo0Wk",
+    authDomain: "checkmate-1fddb.firebaseapp.com",
+    projectId: "checkmate-1fddb",
+    storageBucket: "checkmate-1fddb.appspot.com",
+    messagingSenderId: "497273418555",
+    appId: "1:497273418555:web:5796acd59100cbdc823d1e",
+    measurementId: "G-QXK2P17VKL"
+  };
+const firebase = initializeApp(firebaseConfig);
+const db = getDatabase(firebase);
 
 
 const User = mongoose.model('User');
@@ -27,10 +37,6 @@ const number = "0001110000";
 
 //middleware to get user from frontend
 app.use(express.json());
-app.use((req,res,next)=>{
-    console.log(req.body);
-    next();
-})
 app.use(router);
 
 app.post('/update-number', async(req,res)=>{

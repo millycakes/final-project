@@ -37,6 +37,9 @@ const User = new mongoose.Schema({
         type: String,
         unique: true
     },
+    numberotp:{
+        tyoe: String
+    },
     photo: Buffer,
     preferences: {
         type: Map,
@@ -76,7 +79,7 @@ User.statics.uniqueUsername = async function(username) {
 User.statics.uniqueEmail = async function(email) {
     if (!email) throw new Error('Invalid Email');
     try {
-        const duplicate = await this.findOne({email});
+        const duplicate = await this.findOne({email: email});
         if (duplicate){
             return false;
         }
@@ -92,7 +95,7 @@ User.statics.uniqueEmail = async function(email) {
 User.statics.uniqueNumber = async function(number) {
     if (!number) throw new Error('Invalid Number');
     try {
-        const duplicate = await this.findOne({number});
+        const duplicate = await this.findOne({number: number});
         if (duplicate){
             return false;
         }

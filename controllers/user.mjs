@@ -1,7 +1,7 @@
-import '../db.mjs';
+import '../database/db.mjs';
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
-
+import { getDatabase, ref, set } from "firebase/database";
 const User = mongoose.model('User');
 
 //salt rounds for hashing
@@ -27,6 +27,25 @@ const createUser = async (req,res)=> {
    }
 }
 
+const userNumber = async (req,res)=>{
+    //need email of the user to find user before updating their number
+    const {email,number} = req.body;
+    const uniqueNumber = await User.uniqueNumber(number);
+    if (!uniqueNumber) {
+        console.log('duplicate number');
+    }
+    else {
+        const findUser = await User.findOne({email:email});
+        findUser.number = number;
+        await findUser.save();
+        const db = getDatabase();
+        set(ref(db, email), {
+            number:number
+        });
+    }
+}
+
 export{
-    createUser
+    createUser,
+    userNumber
 };
