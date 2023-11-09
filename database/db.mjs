@@ -10,6 +10,10 @@ const mongooseOpts = {
 
 //user schema
 const User = new mongoose.Schema({
+    uid:{
+        type: String,
+        required: true
+    },
     firstname: {
         type: String,
         trim: true
