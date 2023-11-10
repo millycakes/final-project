@@ -33,11 +33,11 @@ useEffect(()=>{
             <Text style={styles.heading}>Ready to start crushing your goal?</Text>
             <Text style={styles.heading}>{user}</Text>
             <Text style={styles.heading}>Interest</Text>
-            <Text style={styles.heading}>{preferences["Interest"]}</Text>
-             <Text style={styles.heading}>Experience</Text>
-            <Text style={styles.heading}>{preferences["Experience"]}</Text>
+            <Text style={styles.description}>{preferences["Interest"]}</Text>
+            <Text style={styles.heading}>Experience</Text>
+            <Text style={styles.description}>{preferences["Experience"]}</Text>
             <Text style={styles.heading}>Focus</Text>
-            <Text style={styles.heading}>{preferences["Focus"]}</Text>
+            <Text style={styles.description}>{preferences["Focus"]}</Text>
             <Button 
                 title="GET STARTED"
             />
@@ -57,6 +57,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: FONTSIZES.heading2,
         fontWeight: 'bold'
+    },
+    description: {
+        marginTop: 12,
+        textAlign: 'center',
+        fontSize: FONTSIZES.body
     }
 })
 
