@@ -40,14 +40,12 @@ const User = new mongoose.Schema({
         type: String,
         unique: true
     },
-    numberotp:{
-        tyoe: String
-    },
     photo: Buffer,
-    preferences: {
-        type: Map,
-        of: Schema.Types.Mixed 
-    },
+    preferences:[{
+        Interest: String,
+        Experience: String,
+        Focus: String
+    }],
     prev_challenges: [Schema.Types.ObjectId],
     curr_challneges: [Schema.Types.ObjectId],
     challengePhotos: [String]

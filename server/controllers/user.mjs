@@ -23,7 +23,7 @@ const createUser = async (req,res)=> {
                 console.log(err);
             }
             else {
-                const newUser = new User({uid: userRecord.uid, hash: hash, email: email});
+                const newUser = new User({uid: userRecord.uid, hash: hash, email: email, preferences:{}});
                 await newUser.save();
             }
         });
@@ -60,7 +60,64 @@ const userNumber = async (req,res)=>{
     }
 }
 
+//hard coded for now, need to use firebase user instead for this part
+const userPreferences = async(req,res)=>{
+    const {email,pref} = req.body;
+    //remove this after we force user to pick at least one option
+    if (pref!="") {
+        const findUser = await User.findOne({email: email});
+        switch(pref) {
+            case ("I never worked on a personal goal before"):
+                findUser.preferences[0]["Experience"] = "Beginner";
+                break;
+            case ("I had a few personal goals"):
+                findUser.preferences[0]["Experience"] = "Intermediate";
+                break;
+            case("I had and achieved many personal goals"):
+                findUser.preferences[0]["Experience"] = "Advanced";
+                break;
+            case("I lose motivation quickly"):
+                findUser.preferences[0]["Focus"] = "Staying Motivated";
+                break;
+            case("I have a hard time getting started"):
+                findUser.preferences[0]["Focus"] = "Getting Started";
+                break;
+            case("I get overwhelmed"):
+                findUser.preferences[0]["Focus"] = "Taking It Slow";
+                break;
+            case("I forget to work on my goal"):
+                findUser.preferences[0]["Focus"] = "Building Consistency";
+                break;
+            default:
+                findUser.preferences[0]["Interest"]=pref;
+        }
+        await findUser.save();
+    }
+    return res.json({
+        success: true
+    })
+}
+
+const getUser = async (req,res)=>{
+    console.log("called");
+    const{email} = req.body;
+    const findUser = await User.findOne({email: email});
+    if (findUser) {
+        return res.json({
+            success: true,
+            firstname: findUser.firstname,
+            preferences: findUser.preferences[0]
+        })
+    }
+    return res.json({
+        success: false,
+        message: "Invalid User"
+    })
+}
+
 export{
     createUser,
     userNumber,
+    userPreferences,
+    getUser
 };

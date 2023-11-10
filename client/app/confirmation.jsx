@@ -1,17 +1,50 @@
 import { View, Text, Image, StyleSheet } from 'react-native'
 import Button from '../common/Button'
 import { FONTSIZES } from '../constants/theme'
+import { useState, useEffect } from "react"
+import client from '../api/client';
 
 function confirmation() {
-  return (
-    <View style={styles.container}>
-        <Text style={styles.heading}>Ready to start crushing your goal?</Text>
-        <Button 
-            title="GET STARTED"
-        />
-    </View>
-  )
-}
+
+const [user,setUser] = useState("");
+const [preferences,setPreferences] = useState({});
+
+//later on change to using firebase (don't need to get first and last name)
+useEffect(()=>{
+    const onLoad = async ()=>{
+        const res = await client.post('/getUser', {
+            email: "joe@gmail.com"
+        });
+        if (res.data.success) {
+            setUser(res.data.firstname);
+            setPreferences(res.data.preferences);
+        }
+        else {
+            console.log("error: ",res.data.message);
+        }
+    }
+    onLoad();
+},
+)
+//later on need to account for multiple answers for interest
+    return (
+        <View style={styles.container}>
+    
+            <Text style={styles.heading}>Ready to start crushing your goal?</Text>
+            <Text style={styles.heading}>{user}</Text>
+            <Text style={styles.heading}>Interest</Text>
+            <Text style={styles.heading}>{preferences["Interest"]}</Text>
+             <Text style={styles.heading}>Experience</Text>
+            <Text style={styles.heading}>{preferences["Experience"]}</Text>
+            <Text style={styles.heading}>Focus</Text>
+            <Text style={styles.heading}>{preferences["Focus"]}</Text>
+            <Button 
+                title="GET STARTED"
+            />
+        </View>
+      )
+  }
+
 
 const styles = StyleSheet.create({
     container: {

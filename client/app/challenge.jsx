@@ -3,11 +3,22 @@ import { COLORS, FONTSIZES } from '../constants/theme'
 import { useRouter } from 'expo-router'
 import Button from "../common/Button"
 import { useState } from "react"
+import client from '../api/client';
 
 function challenge() {
     const options = ["I lose motivation quickly", "I have a hard time getting started", "I get overwhelmed", "I forget to work on my goal"]
     const router = useRouter();
     const [chosen, setChosen] = useState("");
+
+    const onSubmitFormHandler = async (e)=>{
+        const res = await client.post('/addPreference', {
+          email: "joe@gmail.com",
+          pref: chosen,
+        });
+        if (res.data.success) {
+          router.push("/confirmation",res.data.preferences);
+        }
+      }
 
     return (
         <View style={styles.container}>
@@ -29,7 +40,7 @@ function challenge() {
             </View>
             <Button 
                 title={"Continue"}
-                onPress={() => router.push("/confirmation")}
+                onPress={onSubmitFormHandler}
             />
         </View>
     )

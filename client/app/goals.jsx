@@ -5,6 +5,7 @@ import { COLORS, FONTSIZES } from '../constants/theme'
 import { useRouter } from 'expo-router'
 import { Dimensions } from 'react-native'
 import { useState } from 'react'
+import client from '../api/client';
 
 function goals () {
   const goals = ["Fitness", "Diet", "Lifestyle", "Productivity", "Self-Care", "Hobby", "Wellness", "Finance"]
@@ -12,6 +13,15 @@ function goals () {
   const router = useRouter()
   const [chosenGoal, setChosenGoal] = useState("");
 
+  const onSubmitFormHandler = async (e)=>{
+    const res = await client.post('/addPreference', {
+      email: "joe@gmail.com",
+      pref: chosenGoal,
+    });
+    if (res.data.success) {
+      router.push("/experience");
+    }
+  }
   
     return (
       <View style={styles.container}>
@@ -37,7 +47,7 @@ function goals () {
         </View>
         <Button
           title="Continue"
-          onPress={()=> router.push("/experience")}
+          onPress={onSubmitFormHandler}
         />
       </View>
     )
