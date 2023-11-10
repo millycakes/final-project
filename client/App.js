@@ -5,6 +5,6 @@ import SignUp from './screens/AccountSetup/SignUp/SignUp';
 
 export default function App() {
   return (
-    <SignUp />
+    <SignUp/>
   );
 }
