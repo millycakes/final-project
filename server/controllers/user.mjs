@@ -110,7 +110,7 @@ const getUser = async (req,res)=>{
     }
     return res.json({
         success: false,
-        message: "Invalid User"
+        message: "Invalid User",
     })
 }
 
