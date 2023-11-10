@@ -60,8 +60,7 @@ const userNumber = async (req,res)=>{
     }
 }
 
-
 export{
     createUser,
-    userNumber
+    userNumber,
 };
