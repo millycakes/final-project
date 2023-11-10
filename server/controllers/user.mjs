@@ -54,7 +54,7 @@ const userNumber = async (req,res)=>{
                 console.log(err);
                 return res.json({
                     success: false,
-                    message: "Verification code could not be sent!"
+                    message: "Verification code could not be sent!",
                 })
             })
     }
