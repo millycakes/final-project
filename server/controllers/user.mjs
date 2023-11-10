@@ -42,7 +42,7 @@ const userNumber = async (req,res)=>{
     if (!uniqueNumber) {
         return res.json({
             success: false,
-            message: "Invalid Number"
+            message: "Invalid Number",
         });
     }
     else {
