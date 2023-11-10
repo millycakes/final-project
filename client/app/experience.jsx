@@ -13,7 +13,7 @@ function experience() {
 
     const onSubmitFormHandler = async (e)=>{
         const res = await client.post('/addPreference', {
-          email: "joe@gmail.com",
+          email: "jenna@gmail.com",
           pref: chosenExp,
         });
         if (res.data.success) {

@@ -17,7 +17,7 @@ An Example User:
 
 ```javascript
 {
-  username: "emily<3jenna",
+  username: "jenna<3jenna",
   hash: // a password hash,
   email: "ilovehamilton@gmail.com",
   number: "1110001111",

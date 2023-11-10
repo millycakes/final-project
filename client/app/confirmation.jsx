@@ -13,7 +13,7 @@ const [preferences,setPreferences] = useState({});
 useEffect(()=>{
     const onLoad = async ()=>{
         const res = await client.post('/getUser', {
-            email: "joe@gmail.com"
+            email: "jenna@gmail.com"
         });
         if (res.data.success) {
             setUser(res.data.firstname);

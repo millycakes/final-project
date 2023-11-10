@@ -15,7 +15,7 @@ function goals () {
 
   const onSubmitFormHandler = async (e)=>{
     const res = await client.post('/addPreference', {
-      email: "joe@gmail.com",
+      email: "jenna@gmail.com",
       pref: chosenGoal,
     });
     if (res.data.success) {

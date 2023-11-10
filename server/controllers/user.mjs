@@ -99,7 +99,6 @@ const userPreferences = async(req,res)=>{
 }
 
 const getUser = async (req,res)=>{
-    console.log("called");
     const{email} = req.body;
     const findUser = await User.findOne({email: email});
     if (findUser) {
