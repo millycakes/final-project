@@ -19,7 +19,7 @@ function experience() {
         if (res.data.success) {
           router.push("/challenge");
         }
-      }
+    }
 
     return (
         <View style={styles.container}>
