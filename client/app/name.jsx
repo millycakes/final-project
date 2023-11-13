@@ -14,13 +14,20 @@ function name() {
     const auth = FIREBASE_AUTH;
 
     const onSubmitFormHandler = async(e) =>{
-        updateProfile(auth.currentUser, {
+        auth.currentUser.getIdToken(true)
+        .then((idToken)=>{
+          updateProfile(auth.currentUser, {
             displayName: firstname+" "+lastname
           }).then(async () => {
-            const res = await client.post('/userUpdateInfo', {
-                uid: auth.currentUser.uid,
+            const res = await client.post('/userUpdateInfo', 
+              {
                 firstname: firstname,
                 lastname: lastname
+              },
+              {
+                headers: {
+                  authtoken: idToken,
+                }
               });
               if (res.data.success) {
                 router.push("/goals");
@@ -28,6 +35,10 @@ function name() {
           }).catch((error) => {
             alert(error);
           });
+        })
+        .catch((error)=>{
+          alert(error);
+        })
     }
 
     return (
