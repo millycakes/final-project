@@ -7,6 +7,8 @@ import { Dimensions } from 'react-native'
 import { useState } from 'react'
 import client from '../api/client';
 
+//TODO: make it so that user can choose multiple goals
+
 function goals () {
   const goals = ["Fitness", "Diet", "Lifestyle", "Productivity", "Self-Care", "Hobby", "Wellness", "Finance"]
   const goalIcons = [icons.fitness, icons.diet, icons.lifestyle, icons.productivity, icons.selfCare, icons.hobby, icons.wellness, icons.finance]
@@ -14,13 +16,7 @@ function goals () {
   const [chosenGoal, setChosenGoal] = useState("");
 
   const onSubmitFormHandler = async (e)=>{
-    const res = await client.post('/addPreference', {
-      email: "jenna@gmail.com",
-      pref: chosenGoal,
-    });
-    if (res.data.success) {
-      router.push("/experience");
-    }
+    router.push({pathname: "/experience", params: {goals: chosenGoal}});
   }
   
     return (

@@ -21,7 +21,7 @@ function signup() {
                 uid: user.uid
               });
               if (res.data.success) {
-                router.push("/welcome");
+                router.push("/name");
               }
         })
         .catch((error) => {

@@ -3,35 +3,33 @@ import Button from '../common/Button'
 import { FONTSIZES } from '../constants/theme'
 import { useState, useEffect } from "react"
 import client from '../api/client';
+import {FIREBASE_AUTH} from '../firebase/config';
+
 
 function confirmation() {
+    
+    const [preferences, setPreferences] = useState({}); 
 
-const [user,setUser] = useState("");
-const [preferences,setPreferences] = useState({});
+    useEffect(()=>{
+        const onLoad = async ()=>{
+            const res = await client.post('/getPreferences', {
+                uid: FIREBASE_AUTH.currentUser.uid
+            });
+            if (res.data.success) {
+                setPreferences(res.data.preferences);
+            }
+            else {
+                console.log("error: ",res.data.message);
+            }
+        }
+        onLoad();
+    },
+    )
 
-//later on change to using firebase (don't need to get first and last name)
-useEffect(()=>{
-    const onLoad = async ()=>{
-        const res = await client.post('/getUser', {
-            email: "jenna@gmail.com"
-        });
-        if (res.data.success) {
-            setUser(res.data.firstname);
-            setPreferences(res.data.preferences);
-        }
-        else {
-            console.log("error: ",res.data.message);
-        }
-    }
-    onLoad();
-},
-)
-//later on need to account for multiple answers for interest
     return (
         <View style={styles.container}>
-    
             <Text style={styles.heading}>Ready to start crushing your goal?</Text>
-            <Text style={styles.heading}>{user}</Text>
+            <Text style={styles.heading}>{FIREBASE_AUTH.currentUser.displayName}</Text>
             <Text style={styles.heading}>Interest</Text>
             <Text style={styles.description}>{preferences["Interest"]}</Text>
             <Text style={styles.heading}>Experience</Text>
