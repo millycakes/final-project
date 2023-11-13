@@ -23,6 +23,18 @@ const validateUserSignUp = [
     .not()
     .isEmpty()
     .withMessage('Password is empty!')
+    .isLength({min: 8})
+    .withMessage('Password must be at least 8 characters long!'),
+  check('confirmPassword')
+    .trim()
+    .not()
+    .isEmpty()
+    .custom((value, { req }) => {
+      if (value !== req.body.password) {
+        throw new Error('Both password must be same!');
+      }
+      return true;
+    }),
 ];
 
 const validateNumber = [
