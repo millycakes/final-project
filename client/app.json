@@ -4,23 +4,10 @@
     "web": {
       "bundler": "metro"
     },
-    "name": "client",
-    "slug": "client",
-    "ios": {
-      "bundleIdentifier": "com.Checkmate.client",
-      "googleServicesFile": "./GoogleService-Info.plist"
-    },
     "plugins": [
-      "expo-router",
-      "@react-native-firebase/app",
-      [
-        "expo-build-properties",
-        {
-          "ios": {
-            "useFrameworks": "static"
-          }
-        }
-      ]
-    ]
+      "expo-router"
+    ],
+    "name": "client",
+    "slug": "client"
   }
 }

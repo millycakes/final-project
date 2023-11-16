@@ -12,30 +12,27 @@ const User = mongoose.model('User');
 const saltRounds = 10;
 
 const createUser = async (req,res)=> {
-    const {email, password, uid} = req.body;
-    console.log(email+" "+password);
-    bcrypt.hash(password, saltRounds, async function(err, hash) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            const newUser = new User({uid: uid, hash: hash, email: email, preferences:{}});
-            newUser.save()
-            .then((user)=>{
-                return res.json({
-                    success: true,
-                    message: "successfully created"+user.email
-                })
-            })
-            .catch((err)=>{
+    const {email, password} = req.body;
+    const user = admin.auth().createUser({
+        email: email,
+        password: password
+    }).then((userRecord)=>{
+        console.log("successfully created user");
+        bcrypt.hash(password, saltRounds, async function(err, hash) {
+            if (err) {
                 console.log(err);
-                return res.json({
-                    success: false,
-                    message: err
-                })
-            })
-        }
-    });
+            }
+            else {
+                const newUser = new User({uid: userRecord.uid, hash: hash, email: email, preferences:{}});
+                await newUser.save();
+            }
+        });
+    }).catch((error)=>{
+        return res.json({
+            success: false,
+            message: error,
+        });
+    })
 }
 
 const userNumber = async (req,res)=>{
