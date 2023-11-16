@@ -1,7 +1,10 @@
 import '../database/db.mjs';
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
+import {admin} from '../app.mjs';
 import { getAuth, signInWithPhoneNumber } from "firebase/auth";
+
+//TODO: move firebase auth to frontend client side
 
 const User = mongoose.model('User');
 
@@ -35,35 +38,6 @@ const createUser = async (req,res)=> {
     });
 }
 
-const updateUserInfo = async(req,res)=>{
-    const {uid,firstname,lastname} = req.body;
-    User.findOne({uid: uid})
-    .then((user)=>{
-        user.firstname = firstname;
-        user.lastname = lastname;
-        user.save()
-        .then((u)=>{
-            return res.json({
-                success: true,
-                message: "successfully updated user name"
-            })
-        }).catch((err)=>{
-            console.log(err);
-            return res.json({
-                success: false,
-                message: err
-            })
-        })
-    })
-    .catch((err)=>{
-        console.log(err);
-        return res.json({
-            success: false,
-            message: err
-        })
-    })
-}
-
 const userNumber = async (req,res)=>{
     const auth = getAuth();
     const {email,number} = req.body;
@@ -89,47 +63,51 @@ const userNumber = async (req,res)=>{
     }
 }
 
+//hard coded for now, need to use firebase user instead for this part
 const userPreferences = async(req,res)=>{
-    const {uid,goals,experience,challenge} = req.body;
-    const findUser = await User.findOne({uid: uid});
-    findUser.preferences[0]["Interest"] = goals;
-    switch (experience) {
-        case ("I never worked on a personal goal before"):
-            findUser.preferences[0]["Experience"] = "Beginner";
-            break;
-        case ("I had a few personal goals"):
-            findUser.preferences[0]["Experience"] = "Intermediate";
-            break;
-        case("I had and achieved many personal goals"):
-            findUser.preferences[0]["Experience"] = "Advanced";
-            break;
+    const {email,pref} = req.body;
+    //remove this after we force user to pick at least one option
+    if (pref!="") {
+        const findUser = await User.findOne({email: email});
+        switch(pref) {
+            case ("I never worked on a personal goal before"):
+                findUser.preferences[0]["Experience"] = "Beginner";
+                break;
+            case ("I had a few personal goals"):
+                findUser.preferences[0]["Experience"] = "Intermediate";
+                break;
+            case("I had and achieved many personal goals"):
+                findUser.preferences[0]["Experience"] = "Advanced";
+                break;
+            case("I lose motivation quickly"):
+                findUser.preferences[0]["Focus"] = "Staying Motivated";
+                break;
+            case("I have a hard time getting started"):
+                findUser.preferences[0]["Focus"] = "Getting Started";
+                break;
+            case("I get overwhelmed"):
+                findUser.preferences[0]["Focus"] = "Taking It Slow";
+                break;
+            case("I forget to work on my goal"):
+                findUser.preferences[0]["Focus"] = "Building Consistency";
+                break;
+            default:
+                findUser.preferences[0]["Interest"]=pref;
+        }
+        await findUser.save();
     }
-    switch(challenge) {
-        case("I lose motivation quickly"):
-            findUser.preferences[0]["Focus"] = "Staying Motivated";
-            break;
-        case("I have a hard time getting started"):
-            findUser.preferences[0]["Focus"] = "Getting Started";
-            break;
-        case("I get overwhelmed"):
-            findUser.preferences[0]["Focus"] = "Taking It Slow";
-            break;
-        case("I forget to work on my goal"):
-            findUser.preferences[0]["Focus"] = "Building Consistency";
-            break;
-    }
-    await findUser.save();
     return res.json({
         success: true
     })
 }
 
-const getPreferneces = async (req,res)=>{
-    const{uid} = req.body;
-    const findUser = await User.findOne({uid: uid});
+const getUser = async (req,res)=>{
+    const{email} = req.body;
+    const findUser = await User.findOne({email: email});
     if (findUser) {
         return res.json({
             success: true,
+            firstname: findUser.firstname,
             preferences: findUser.preferences[0]
         })
     }
@@ -143,6 +121,5 @@ export{
     createUser,
     userNumber,
     userPreferences,
-    getPreferneces,
-    updateUserInfo
+    getUser
 };

@@ -1,29 +1,24 @@
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from "react-native"
 import { COLORS, FONTSIZES } from '../constants/theme'
-import { useRouter,useLocalSearchParams } from 'expo-router'
+import { useRouter } from 'expo-router'
 import Button from "../common/Button"
-import { useState } from "react";
+import { useState } from "react"
 import client from '../api/client';
-import {FIREBASE_AUTH} from '../firebase/config';
 
 function challenge() {
     const options = ["I lose motivation quickly", "I have a hard time getting started", "I get overwhelmed", "I forget to work on my goal"]
     const router = useRouter();
     const [chosen, setChosen] = useState("");
-    const params = useLocalSearchParams();
-    const {goals, experience} = params;
 
     const onSubmitFormHandler = async (e)=>{
         const res = await client.post('/addPreference', {
-            uid: FIREBASE_AUTH.currentUser.uid,
-            goals: goals,
-            experience: experience,
-            challenge: chosen
+          email: "jenna@gmail.com",
+          pref: chosen,
         });
         if (res.data.success) {
-            router.push('/confirmation');
+          router.push("/confirmation",res.data.preferences);
         }
-    }
+      }
 
     return (
         <View style={styles.container}>
