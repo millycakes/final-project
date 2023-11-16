@@ -9,24 +9,12 @@ import client from '../api/client';
 function experience() {
     const options = ["I never worked on a personal goal before", "I had a few personal goals", "I had and achieved many personal goals"]
     const router = useRouter();
-    let experience = "";
     const [chosenExp, setChosenExp] = useState("");
     const params = useLocalSearchParams();
     const {goals} = params;
 
     const onSubmitFormHandler = async (e)=>{
-        switch (chosenExp) {
-            case (options[0]):
-                experience = "Beginner";
-                break;
-            case (options[1]):
-                experience = "Intermediate";
-                break;
-            case(options[2]):
-                experience = "Advanced";
-                break;
-        }
-        router.push({pathname: "/challenge", params: {goals: goals, experience: experience}});
+        router.push({pathname: "/challenge", params: {goals: goals, experience: chosenExp}});
     }
 
     return (

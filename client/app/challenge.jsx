@@ -10,45 +10,19 @@ function challenge() {
     const options = ["I lose motivation quickly", "I have a hard time getting started", "I get overwhelmed", "I forget to work on my goal"]
     const router = useRouter();
     const [chosen, setChosen] = useState("");
-    let challenge = "";
     const params = useLocalSearchParams();
     const {goals, experience} = params;
 
     const onSubmitFormHandler = async (e)=>{
-        FIREBASE_AUTH.currentUser.getIdToken(true).then(async (idToken)=>{
-            switch(chosen) {
-                case(options[0]):
-                    challenge = "Staying Motivated";
-                    break;
-                case(options[1]):
-                    challenge = "Getting Started";
-                    break;
-                case(options[2]):
-                    challenge = "Taking It Slow";
-                    break;
-                case(options[3]):
-                    challenge = "Building Consistency";
-                    break;
-            }
-            const res = await client.post('/addPreference', {
-                goals: goals,
-                experience: experience,
-                challenge: challenge
-            },
-            {
-                headers: {
-                  authtoken: idToken,
-                }
-            });
-            if (res.data.success) {
-                router.push({pathname: '/confirmation', params: {goals: goals, experience: experience, challenge: challenge}});
-            }
-            else {
-                alert(res.data.message);
-            }
-          }).catch(function(error) {
-            alert(error);
-          });
+        const res = await client.post('/addPreference', {
+            uid: FIREBASE_AUTH.currentUser.uid,
+            goals: goals,
+            experience: experience,
+            challenge: chosen
+        });
+        if (res.data.success) {
+            router.push('/confirmation');
+        }
     }
 
     return (
