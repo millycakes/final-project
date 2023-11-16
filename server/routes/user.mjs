@@ -1,17 +1,19 @@
 import express from 'express';
-import {createUser,userNumber,userPreferences, getUser} from '../controllers/user.mjs'
-import {validateUserSignUp,validateNumber,errorMsg,checkAuth} from '../middleware/validation/user.mjs'
+import {createUser,userNumber,userPreferences,getPreferneces,updateUserInfo} from '../controllers/user.mjs'
+import {checkAuth} from '../middleware/validation/user.mjs'
 
 const router = express.Router();
 
-router.post('/userSignup', validateUserSignUp, errorMsg, createUser);
+router.post('/userSignup', createUser);
 
-//add checkAuth after creating frontend from this route onwards
-router.post('/signUpPhone', validateNumber, errorMsg, userNumber);
+router.post('/userUpdateInfo',checkAuth,updateUserInfo);
 
-router.post('/addPreference', userPreferences);
+//add back later when we use numbers
+// router.post('/signUpPhone', checkAuth, userNumber);
 
-router.post('/getUser', getUser);
+router.post('/addPreference',checkAuth, userPreferences);
+
+router.post('/getPreferences',checkAuth, getPreferneces);
 
 export{
     router
