@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
         padding: 16,
         position: 'absolute',
         bottom:40,
-        left: 0,
-        right: 0
+        left: 20,
+        right: 20
     },
     buttonText: {
         fontSize: FONTSIZES.button,

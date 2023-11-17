@@ -5,6 +5,7 @@ import Button from "../common/Button"
 import { useState } from "react";
 import client from '../api/client';
 import {FIREBASE_AUTH} from '../firebase/config';
+import { globalStyles } from "../styles/global";
 
 function challenge() {
     const options = ["I lose motivation quickly", "I have a hard time getting started", "I get overwhelmed", "I forget to work on my goal"]
@@ -37,7 +38,7 @@ function challenge() {
             },
             {
                 headers: {
-                  authtoken: idToken,
+                    authtoken: idToken,
                 }
             });
             if (res.data.success) {
@@ -46,14 +47,14 @@ function challenge() {
             else {
                 alert(res.data.message);
             }
-          }).catch(function(error) {
+        }).catch(function(error) {
             alert(error);
-          });
+        });
     }
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.heading}>What is your biggest challenge when it comes to your goals?</Text>
+        <View style={globalStyles.container}>
+            <Text style={globalStyles.heading3}>What is your biggest challenge when it comes to your goals?</Text>
             <View>
                 <FlatList 
                     data={options}
@@ -78,17 +79,6 @@ function challenge() {
 }
 
 const styles = StyleSheet.create({
-        container: {
-            flex: 1,
-            marginLeft: 20,
-            marginRight: 20
-        },
-        heading: {
-            marginTop: 40,
-            fontSize: FONTSIZES.heading3,
-            fontWeight: 'bold',
-            marginBottom: 24
-        },
         option: (chosen, item) => ({
             backgroundColor: COLORS.gray200,
             borderRadius: 8,

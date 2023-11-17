@@ -3,7 +3,7 @@ import Button from '../common/Button'
 import { FONTSIZES } from '../constants/theme'
 import {FIREBASE_AUTH} from '../firebase/config';
 import { useLocalSearchParams, useRouter } from 'expo-router'
-
+import { globalStyles } from '../styles/global';
 
 function confirmation() {
     
@@ -12,7 +12,7 @@ function confirmation() {
     const {goals, experience, challenge} = params;
 
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.container}>
             <Text style={styles.heading}>Ready to start crushing your goal?</Text>
             <Text style={styles.heading}>{FIREBASE_AUTH.currentUser.displayName}</Text>
             <Text style={styles.heading}>Interest</Text>

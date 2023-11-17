@@ -3,8 +3,7 @@ import { COLORS, FONTSIZES } from '../constants/theme'
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router'
 import Button from "../common/Button"
 import { useState } from "react"
-import client from '../api/client';
-
+import { globalStyles } from "../styles/global"
 
 function experience() {
     const options = ["I never worked on a personal goal before", "I had a few personal goals", "I had and achieved many personal goals"]
@@ -30,8 +29,8 @@ function experience() {
     }
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.heading}>How much experience do you have with personal goals?</Text>
+        <View style={globalStyles.container}>
+            <Text style={globalStyles.heading3}>How much experience do you have with personal goals?</Text>
             <View>
                 <FlatList 
                     data={options}
@@ -56,17 +55,6 @@ function experience() {
 }
 
 const styles = StyleSheet.create({
-        container: {
-            flex: 1,
-            marginLeft: 20,
-            marginRight: 20
-        },
-        heading: {
-            marginTop: 40,
-            fontSize: FONTSIZES.heading3,
-            fontWeight: 'bold',
-            marginBottom: 24
-        },
         option: (chosenExp, item) => ({
             backgroundColor: COLORS.gray200,
             borderRadius: 8,

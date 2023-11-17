@@ -1,9 +1,11 @@
 import { useRouter } from 'expo-router';
-import { View,TextInput,Button,Text } from 'react-native';
+import { View,TextInput,Text } from 'react-native';
 import {FIREBASE_AUTH} from '../firebase/config';
 import { useState } from 'react';
 import client from '../api/client';
 import { updateProfile } from "firebase/auth";
+import { globalStyles } from '../styles/global';
+import Button from '../common/Button';
 
 //TODO: Add secure header using firebase
 
@@ -42,17 +44,26 @@ function name() {
     }
 
     return (
-        <View>
-            <Text>
+        <View style={globalStyles.container}>
+            <Text style={globalStyles.heading3}>
                 What is your name?
             </Text>
+            <Text style={globalStyles.bodyDefault}>
+              Tell us a little bit about yourself
+            </Text>
+            <Text style={globalStyles.label}>First Name</Text>
             <TextInput
-            onChangeText={setFirstname}
-            value={firstname}
+              placeholder='First Name'
+              style={globalStyles.input}
+              onChangeText={setFirstname}
+              value={firstname}
             />
+            <Text style={globalStyles.label}>Last Name</Text>
             <TextInput
-            onChangeText={setLastname}
-            value={lastname}
+              placeholder='Last Name'
+              style={globalStyles.input}
+              onChangeText={setLastname}
+              value={lastname}
             />
             <Button
                 title="Continue"
