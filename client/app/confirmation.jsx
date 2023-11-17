@@ -6,7 +6,6 @@ import { useLocalSearchParams, useRouter } from 'expo-router'
 import { globalStyles } from '../styles/global';
 
 function confirmation() {
-    
     const router = useRouter();
     const params = useLocalSearchParams();
     const {goals, experience, challenge} = params;
@@ -23,10 +22,11 @@ function confirmation() {
             <Text style={styles.description}>{challenge}</Text>
             <Button 
                 title="GET STARTED"
+                onPress={() => router.push("/home")}
             />
         </View>
-      )
-  }
+        )
+    }
 
 
 const styles = StyleSheet.create({

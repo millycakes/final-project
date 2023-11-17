@@ -1,10 +1,13 @@
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { TouchableOpacity, Image, Text, StyleSheet } from "react-native";
 import { COLORS, FONT, FONTSIZES, SIZES, SHADOWS } from "../constants/theme";
 
 
-function Button ({ title, onPress }) {
+function ChallengeCard ({ title, onPress }) {
     return (
         <TouchableOpacity onPress={onPress} style={styles.buttonContainer}>
+            <Image
+                
+              />
             <Text style={styles.buttonText}>{title}</Text>
         </TouchableOpacity>
     )
@@ -29,4 +32,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Button
+export default ChallengeCard

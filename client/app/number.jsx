@@ -19,7 +19,7 @@ function number() {
         auth.settings.appVerificationDisabledForTesting = true;
         window.recaptchaVerifier = new RecaptchaVerifier('recaptcha', {
             'size': 'invisible',
-          }, auth);
+        }, auth);
         setNumber( "+1"+number.replace(/[^0-9]/g, ''));
         signInWithPhoneNumber(auth, number, window.recaptchaVerifier)
         .then((confirmationResult) => {

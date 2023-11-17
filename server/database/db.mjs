@@ -55,7 +55,8 @@ const Challenge = new mongoose.Schema({
     title: String,
     duration: [Date],
     challengePhotos: [Buffer],
-    completed: Boolean
+    completed: Boolean,
+    category: String
 })
 
 //check if username is unique
