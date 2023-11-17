@@ -11,11 +11,11 @@ function Welcome() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.heading}>Welcome to CheckMate {auth.currentUser.displayName}</Text>
+            <Text style={styles.heading}>Welcome to CheckMate</Text>
             <Text style={styles.text}>Bet on yourself and start building habits that actually last</Text>
             <Button
                 title="Get Started"
-                onPress={() => router.push("/goals")}
+                onPress={() => router.push("/signup")}
             />
         </View>
     )
@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
         marginTop: 40,
         fontSize: FONTSIZES.heading2,
         fontWeight: 'bold',
-        marginBottom: 24
+        marginBottom: 24,
+        fontFamily: 'PoppinsBold'
     },
     container: {
         flex: 1,

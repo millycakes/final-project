@@ -1,29 +1,31 @@
+import { useCallback } from 'react';
 import { Stack } from "expo-router"
+import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen';
-import useFonts from 'expo-font'
 
-const StackLayout = () => {
-    // const [fontsLoaded] = useFonts({
-    //     PoppinsBold: require("../assets/fonts/Poppins-SemiBold.ttf"),
-    //     PoppinsRegular: require("../assets/fonts/Poppins-Regular.ttf")
-    // });
+SplashScreen.preventAutoHideAsync();
 
-    // useEffect(() => {
-    //     async function prepare() {
-    //         await SplashScreen.preventAutoHideAsync();
-    //     }
-    //     prepare();
-    // }, []);
+const Layout = () => {
+    const [fontsLoaded] = useFonts({
+        'PoppinsBold': require("../assets/fonts/Poppins-SemiBold.ttf"),
+        'PoppinsRegular': require("../assets/fonts/Poppins-Regular.ttf")
+    });
     
-    // if (!fontsLoaded) {
-    //     return undefined;
-    // } else {
-    //     SplashScreen.hideAsync();
-    // }
+    const onLayoutRootView = useCallback(async () => {
+        if (fontsLoaded) {
+            await SplashScreen.hideAsync();
+        }
+    }, [fontsLoaded]);
+        
+    if (!fontsLoaded) {
+        return null;
+    }
     
     return (
-        <Stack initialRouteName="welcome">
+        <Stack initialRouteName="welcome" onLayout={onLayoutRootView}>
             <Stack.Screen name="welcome"/>
         </Stack>
     )
 }
+
+export default Layout;

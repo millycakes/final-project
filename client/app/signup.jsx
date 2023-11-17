@@ -19,10 +19,10 @@ function signup() {
                 email: user.email,
                 password: password,
                 uid: user.uid
-              });
-              if (res.data.success) {
+            });
+            if (res.data.success) {
                 router.push("/name");
-              }
+            }
         })
         .catch((error) => {
             switch (error.code) {
@@ -45,10 +45,12 @@ function signup() {
         <View>
             <TextInput
             onChangeText={setEmail}
+            placeholder="Email"
             value={email}
             />
             <TextInput
             onChangeText={setPassword}
+            placeholder='Password'
             value={password}
             />
             <Button
