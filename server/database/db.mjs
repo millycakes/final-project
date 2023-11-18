@@ -7,7 +7,6 @@ const mongooseOpts = {
     useNewUrlParser: true
 };
 
-
 //user schema
 const User = new mongoose.Schema({
     uid:{
@@ -53,11 +52,12 @@ const User = new mongoose.Schema({
 //challenge schema
 const Challenge = new mongoose.Schema({
     title: String,
-    duration: [Date],
+    duration: String,
     challengePhotos: [Buffer],
     completed: Boolean,
     category: String
 })
+
 
 //check if username is unique
 User.statics.uniqueUsername = async function(username) {
@@ -111,7 +111,6 @@ User.statics.uniqueNumber = async function(number) {
 //model our schemas
 mongoose.model('User', User);
 mongoose.model('Challenge', Challenge);
-
 
 //connect to mongoose
 mongoose.connect(process.env.MONGO_URI, mongooseOpts)

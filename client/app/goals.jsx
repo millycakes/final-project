@@ -53,6 +53,7 @@ const colors = ["#DDF3FC", "#FCD4D4", "#FFF5C5", "#D7FAE3", "#E3DAFA", "#FFE8C5"
 const styles = StyleSheet.create({
   optionCard: (index, chosenGoal, item) => ({
     flexDirection: 'row',
+    justifyContent: 'space-between',
     backgroundColor: colors[index],
     borderRadius: 8,
     width: '50%',

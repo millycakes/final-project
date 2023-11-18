@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import './database/db.mjs';
 import admin from 'firebase-admin';
 import {router} from './routes/user.mjs';
+import {challengeRouter} from './routes/challenge.mjs'
 
 const app = express();
 
@@ -23,7 +24,6 @@ admin.initializeApp({
 //     measurementId: "G-QXK2P17VKL"
 //   };
 
-
 const User = mongoose.model('User');
 const Challenge = mongoose.model('Challenge'); 
 
@@ -40,6 +40,7 @@ const number = "0001110000";
 //middleware to get user from frontend
 app.use(express.json());
 app.use(router);
+app.use(challengeRouter);
 
 app.post('/update-number', async(req,res)=>{
     if (!User.uniqueNumber(number)) {

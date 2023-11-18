@@ -22,6 +22,12 @@ export const globalStyles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 8.
     },
+    heading5: {
+        fontFamily: 'PoppinsBold',
+        fontSize: FONTSIZES.heading5,
+        fontWeight: 'bold',
+        marginBottom: 8.
+    },
     option: (chosenExp, item) => ({
         backgroundColor: COLORS.gray200,
         borderRadius: 8,
@@ -52,5 +58,14 @@ export const globalStyles = StyleSheet.create({
         fontFamily: 'PoppinsRegular',
         fontSize: FONTSIZES.body,
         color: COLORS.gray700
+    },
+    search: {
+        backgroundColor: COLORS.white,
+        borderColor: COLORS.gray300,
+        borderWidth: 1,
+        borderRadius: 100,
+        paddingHorizontal: 16,
+        paddingVertical: 12,
+        marginBottom: 12
     }
 })
