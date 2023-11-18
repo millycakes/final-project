@@ -52,6 +52,7 @@ const User = new mongoose.Schema({
 //challenge schema
 const Challenge = new mongoose.Schema({
     title: String,
+    description: String,
     duration: String,
     challengePhotos: [Buffer],
     completed: Boolean,

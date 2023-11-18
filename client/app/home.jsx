@@ -1,14 +1,17 @@
 import React from 'react'
 import { useRouter } from 'expo-router'
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView} from 'react-native'
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView, FlatList, Image} from 'react-native'
 import { globalStyles } from '../styles/global'
 import client from '../api/client';
 import { useEffect, useState } from 'react'
 import { COLORS } from '../constants/theme'
+import icons from '../constants/goalIcons'
 
 function home() {
+    const goals = ["Fitness", "Diet", "Lifestyle", "Productivity", "Self-Care", "Hobby", "Wellness", "Finance"]
+    const goalIcons = [icons.fitness, icons.diet, icons.lifestyle, icons.productivity, icons.selfCare, icons.hobby, icons.wellness, icons.finance]
+  
     useEffect(() => {
-        console.log('fetching challenges')
         async function getChallenges(){
             const response = client.get(`/getChallenges`)
                 .then((res)=> {
@@ -24,6 +27,8 @@ function home() {
         setSearch(search);
     };
 
+    const router = useRouter()
+
     return (
         <View style={globalStyles.container}>
             <View style={globalStyles.search}>
@@ -34,11 +39,28 @@ function home() {
                     style={globalStyles.bodyDefault}
                 />
             </View>
+            <FlatList
+                data={goals}
+                horizontal={true}
+                style={styles.goals}
+                showsHorizontalScrollIndicator={false}
+                renderItem={({ item, index }) => (
+                    <TouchableOpacity style={styles.goal}>
+                        <Image source={goalIcons[index]}/>
+                        <Text >{item}</Text>
+                    </TouchableOpacity>
+                )}
+                keyExtractor={(item) => item}
+                />
             <ScrollView horizontal>
             {
                 challenges.map((challenge, index) => {
                     return (
-                        <TouchableOpacity style={styles.challenge} key={index}>
+                        <TouchableOpacity
+                            style={styles.challenge} 
+                            key={index}
+                            onPress={() => router.push(`/challenge-details/${challenge._id}`)}
+                        >
                             <View style={styles.challengeImg}></View>
                             <View style={styles.metadata}>
                                 <Text style={styles.chip}>{challenge.duration}</Text>
@@ -55,8 +77,17 @@ function home() {
 }
 
 const styles = StyleSheet.create({
+    goals: {
+        maxHeight: 80
+    },
+    goal: {
+        display: 'flex',
+        flexDirection: 'column',
+        marginRight: 12,
+        alignItems: 'center'
+    },
     challenge: {
-        marginRight: 8
+        marginRight: 16
     },
     challengeImg: {
         width: 240,

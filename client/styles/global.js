@@ -9,6 +9,13 @@ export const globalStyles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 24.
     },
+    heading2: {
+        marginTop: 20,
+        fontFamily: 'PoppinsBold',
+        fontSize: FONTSIZES.heading2,
+        fontWeight: 'bold',
+        marginBottom: 24.
+    },
     container: {
         flex: 1,
         paddingLeft: 20,
