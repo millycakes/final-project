@@ -44,8 +44,9 @@ const User = new mongoose.Schema({
         Experience: String,
         Focus: String
     }],
-    prev_challenges: [Schema.Types.ObjectId],
-    curr_challneges: [Schema.Types.ObjectId],
+    rec_challenges: [{ type: Schema.Types.ObjectId, ref: 'Challenge' }],
+    prev_challenges: [{ type: Schema.Types.ObjectId, ref: 'Challenge' }],
+    curr_challneges: [{ type: Schema.Types.ObjectId, ref: 'Challenge' }],
     challengePhotos: [String]
 });
 

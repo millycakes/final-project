@@ -3,6 +3,8 @@ import { Stack, useRouter, useLocalSearchParams } from 'expo-router'
 import { useState, useEffect } from "react";
 import client from "../../api/client";
 import { globalStyles } from "../../styles/global";
+import {FIREBASE_AUTH} from '../../firebase/config'; 
+
 
 function ChallengeDetails() {
     const params = useLocalSearchParams();
@@ -11,17 +13,28 @@ function ChallengeDetails() {
     const [challenge, setChallenge] = useState({});
 
     useEffect(() => {
-        async function challengeDetails(){
-            const response = client.get(`/challengeDetails?id=${params['id']}`)
-                .then((res)=> {
-                    [data] = res.data
-                    setChallenge(data)
-                });
-        }
-        challengeDetails()
+        const challengeDetails = FIREBASE_AUTH.currentUser.getIdToken(true)
+        .then(async (idToken) => {
+            const response = client.post('/challengeDetails',
+            {
+                id: params['id'],
+            },
+            {
+                headers: {
+                    authtoken: idToken,
+                }
+            })
+            .then((res)=> {
+                [data] = res.data
+                setChallenge(data)
+            });
+        }).catch(error => {
+            alert("error1",error);
+        });
+        challengeDetails;
     }, []);
 
-    console.log(challenge)
+    alert(challenge)
     
     return (
         <View style={globalStyles.container}>

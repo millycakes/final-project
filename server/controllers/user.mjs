@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 import { getAuth, signInWithPhoneNumber } from "firebase/auth";
 
 const User = mongoose.model('User');
+const Challenge = mongoose.model('Challenge');
 
 //salt rounds for hashing
 const saltRounds = 10;
@@ -102,6 +103,14 @@ const userPreferences = async(req,res)=>{
             u.preferences[0]["Interest"] = goals;
             u.preferences[0]["Experience"] = experience;
             u.preferences[0]["Focus"] = challenge;
+            //setting number of challenges we recommend to a limit of 2 for now
+            const recommended = await Challenge.find({tags: {$in:[goals]}}).limit(2).select('_id');
+            //can probably get rid of later few lines after we add more challenges
+            let add_recommended = [];
+            if (recommended.length<2) {
+                add_recommended = await Challenge.find({_id: { $nin: recommended }, tags: {$in:[experience]}}).limit(2-recommended.length).select('_id');
+            }
+            u.rec_challenges =  [...recommended, ...add_recommended];
             await u.save();
             return res.json({
                 success: true
