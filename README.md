@@ -72,6 +72,8 @@ An Example Challenge:
 
 ## Site map
 
+<img src="https://github.com/millycakes/final-project/assets/62906996/71bd8d0d-0b87-406f-b7ce-f67facdaa9b3">
+
 You can test out the prototype [here](https://www.figma.com/proto/895qnnItxZDRUSWQtnc2pR/CheckMate?page-id=340%3A5213&type=design&node-id=388-4889&viewport=401%2C-2535%2C0.51&t=I7VivEIM5ZO5Hf6y-1&scaling=scale-down&starting-point-node-id=388%3A4889&mode=design)
 
 ## User Stories or Use Cases
