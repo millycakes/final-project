@@ -6,7 +6,9 @@ I frequently see my friends diligently working on their assignments and achievin
 Checkmate is a habit tracker app that helps users, especially college students, reach their personal goals as effectively as their academic goals by enforcing social and structural accountability. Users can join habit-building challenges and bet money on themselves. For the duration of the challenge, they will have to upload a photo of themselves completing the challenge as proof of completion. If they complete the goal they set for themselves, they win a small monetary prize. If they fail to achieve their goal, they lose a percentage of the money they bet.
 
 ## Team
-I am working on this project with my friend Jenna Han (jennahan@nyu.edu).
+Emily Wang (egw7501@stern.nyu.edu)
+
+Jenna Han (jennahan@nyu.edu)
 
 ## Data Model
 The application will store Users and Challenges
@@ -49,35 +51,34 @@ An Example Challenge:
 - Snap a photo of you working on your goal by a set deadline as proof of completion
 - Your proof of completion will be visible to others working on the same challenge
 
-![IMG_7478](https://github.com/nyu-csci-ua-0467-001-002-fall-2023/final-project-millycakes/assets/105938846/8a230f20-3143-4c10-8678-1534b3265743)
+![IMG_7478](https://github.com/millycakes/final-project/assets/62906996/36104a93-ed9c-494f-9b76-1390f7520df1)
+
 
 ### Bet money on yourself and earn monetary prizes
 - It’s like a swear jar!
 - Deposit money. You’ll earn a prize if you complete your goal and lose a part of your deposit if you fail to
 - Redeem prize money for fun gift cards
 
-![IMG_2516](https://github.com/nyu-csci-ua-0467-001-002-fall-2023/final-project-millycakes/assets/105938846/cb804bdd-780b-4ef8-a538-7624fd40c536)
+![IMG_2516](https://github.com/millycakes/final-project/assets/62906996/4e72b05f-b9fa-4375-9e7d-82ab05abf23f)
+
 
 ### Join the community and spread support
 - View other goal-getters’ proof of completion and hold them accountable
 - Send support with reactions
 - Track your progress compared to other group members
 
-![IMG_9846](https://github.com/nyu-csci-ua-0467-001-002-fall-2023/final-project-millycakes/assets/105938846/d1c8d479-2995-4a9b-9809-8c9a722d75f2)
+![IMG_9846](https://github.com/millycakes/final-project/assets/62906996/b54aac93-c026-432a-877f-abcb3c2c99d8)
 
-### All screens
-View all screens on
-
-![IMG_5522](https://github.com/nyu-csci-ua-0467-001-002-fall-2023/final-project-millycakes/assets/105938846/8fd43f66-8792-4e5e-9072-1e01b54fbf04)
 
 ## Site map
+
+<img src="https://github.com/millycakes/final-project/assets/62906996/71bd8d0d-0b87-406f-b7ce-f67facdaa9b3">
 
 You can test out the prototype [here](https://www.figma.com/proto/895qnnItxZDRUSWQtnc2pR/CheckMate?page-id=340%3A5213&type=design&node-id=388-4889&viewport=401%2C-2535%2C0.51&t=I7VivEIM5ZO5Hf6y-1&scaling=scale-down&starting-point-node-id=388%3A4889&mode=design)
 
 ## User Stories or Use Cases
 
-![IMG_8409](https://github.com/nyu-csci-ua-0467-001-002-fall-2023/final-project-millycakes/assets/105938846/9ad0c4a8-f00b-40a4-8f71-4cfbf492868b)
-
+![IMG_8409](https://github.com/millycakes/final-project/assets/62906996/bf1097c9-ce58-4398-b30c-ab24097203d6)
 
 ## Research Topics
 
