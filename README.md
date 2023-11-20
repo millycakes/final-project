@@ -83,8 +83,7 @@ You can test out the prototype [here](https://www.figma.com/proto/895qnnItxZDRUS
 ## Research Topics
 
 * (3 points) Integrate user authentication
-    * We're going to be using passport for user authentication. We will be using it for both normal email and password login and other login options
-    like Google login.
+    * We're going to be using Firebase for user authentication. Firebase will handle creating and storing the user's email and passwords, and we will use a custom backend with MongoDB.
     * When testing out the app, you can either create your own account or use a test user account that will be provided here: ****
 * (3 points) Recommendation Algorithm
     * We're going to be implementing a recommendation algorithm that recommends to the user challenges based on their survey preferences. We're not sure how complex we want it to be yet (and whether or not AI will be used in the recommendation). The number of points assigned here might be adjusted later on based on how complex the algorithm is.
