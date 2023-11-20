@@ -53,13 +53,17 @@ function signup() {
                 onChangeText={setEmail}
                 placeholder="Email"
                 value={email}
+                autoCapitalize="none"
+                autoCorrect={false}
             />
             <Text style={globalStyles.label}>Password</Text>
             <TextInput
-            style={globalStyles.input}
-            onChangeText={setPassword}
-            placeholder='Password'
-            value={password}
+                style={globalStyles.input}
+                onChangeText={setPassword}
+                placeholder='Password'
+                value={password}
+                autoCapitalize="none"
+                autoCorrect={false}
             />
             <Button
                 title="Sign Up"

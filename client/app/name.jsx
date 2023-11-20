@@ -57,6 +57,7 @@ function name() {
               style={globalStyles.input}
               onChangeText={setFirstname}
               value={firstname}
+              autoCorrect={false}
             />
             <Text style={globalStyles.label}>Last Name</Text>
             <TextInput
@@ -64,6 +65,7 @@ function name() {
               style={globalStyles.input}
               onChangeText={setLastname}
               value={lastname}
+              autoCorrect={false}
             />
             <Button
                 title="Continue"
