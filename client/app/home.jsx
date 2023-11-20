@@ -11,6 +11,7 @@ import {FIREBASE_AUTH} from '../firebase/config';
 function home() {
     const goals = ["Fitness", "Diet", "Lifestyle", "Productivity", "Self-Care", "Hobby", "Wellness", "Finance"]
     const goalIcons = [icons.fitness, icons.diet, icons.lifestyle, icons.productivity, icons.selfCare, icons.hobby, icons.wellness, icons.finance]
+    const [chosenGoal, setChosenGoal] = useState("");
     
     useEffect(() => {
         const fetch = FIREBASE_AUTH.currentUser.getIdToken(true)
@@ -24,6 +25,7 @@ function home() {
                     });
                     if (response.data.success) {
                         setChallenges(response.data.allChallenges);
+                        setFilteredChallenges(response.data.allChallenges)
                         setRecommended(response.data.recChallenges);
                     }
                     else {
@@ -37,14 +39,26 @@ function home() {
                 alert("error 3", error);
             });
         fetch;
-        }, []);
+    }, []);
 
     const [search, setSearch] = useState('');
     const [challenges, setChallenges] = useState([]);
     const [recommended, setRecommended] = useState([]);
-    const updateSearch = (search) => {
-        setSearch(search);
-    };
+    const [filteredChallenges, setFilteredChallenges] = useState([]);
+
+
+    React.useEffect(() => {
+        let challengeCopy = [...challenges];
+        console.log(search, chosenGoal)
+        if (search){
+            challengeCopy = challengeCopy.filter(review => review.title.toLowerCase().includes(search.toLowerCase()));
+        }
+        if (chosenGoal){
+            challengeCopy = challengeCopy.filter(review => review.category.includes(chosenGoal));
+        }
+        setFilteredChallenges(challengeCopy);
+    }, [search, chosenGoal])
+
 
     const router = useRouter()
 
@@ -56,6 +70,8 @@ function home() {
                     onChangeText={(text) => setSearch(text)}
                     placeholder='Search'
                     style={globalStyles.bodyDefault}
+                    autoCapitalize={false}
+                    autoComplete={false}
                 />
             </View>
             <FlatList
@@ -64,15 +80,23 @@ function home() {
                 style={styles.goals}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item, index }) => (
-                    <TouchableOpacity style={styles.goal}>
+                    <TouchableOpacity 
+                        style={styles.goal(chosenGoal, item)}
+                        onPress={() => {
+                            if (chosenGoal == item){
+                                return setChosenGoal("");
+                            }
+                            setChosenGoal(item)
+                        }}
+                    >
                         <Image source={goalIcons[index]}/>
                         <Text >{item}</Text>
                     </TouchableOpacity>
                 )}
                 keyExtractor={(item) => item}
                 />
-            <Text>Recommended For You</Text>
-            <ScrollView horizontal>
+            <Text style={globalStyles.heading3}>Recommended For You</Text>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {
                 recommended.map((challenge) => {
                     return (
@@ -92,10 +116,10 @@ function home() {
                 })
             }
             </ScrollView>
-            <Text>Try Something New</Text>
-            <ScrollView horizontal>
+            <Text style={globalStyles.heading3}>All Challenges</Text>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {
-                challenges.map((challenge) => {
+                filteredChallenges.map((challenge) => {
                     return (
                         <TouchableOpacity
                             style={styles.challenge} 
@@ -121,12 +145,13 @@ const styles = StyleSheet.create({
     goals: {
         maxHeight: 80
     },
-    goal: {
+    goal: (chosenGoal, item) => ({
         display: 'flex',
         flexDirection: 'column',
         marginRight: 12,
-        alignItems: 'center'
-    },
+        alignItems: 'center',
+        backgroundColor: chosenGoal === item ? COLORS.accentLight : COLORS.white
+    }),
     challenge: {
         marginRight: 16
     },
