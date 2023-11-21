@@ -49,7 +49,6 @@ function home() {
 
     React.useEffect(() => {
         let challengeCopy = [...challenges];
-        console.log(search, chosenGoal)
         if (search){
             challengeCopy = challengeCopy.filter(review => review.title.toLowerCase().includes(search.toLowerCase()));
         }
@@ -70,8 +69,8 @@ function home() {
                     onChangeText={(text) => setSearch(text)}
                     placeholder='Search'
                     style={globalStyles.bodyDefault}
-                    autoCapitalize={false}
-                    autoComplete={false}
+                    autoCapitalize="none"
+                    autoCorrect={false}
                 />
             </View>
             <FlatList

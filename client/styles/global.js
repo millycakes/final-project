@@ -10,7 +10,6 @@ export const globalStyles = StyleSheet.create({
         marginBottom: 24.
     },
     heading2: {
-        marginTop: 20,
         fontFamily: 'PoppinsBold',
         fontSize: FONTSIZES.heading2,
         fontWeight: 'bold',
@@ -23,7 +22,6 @@ export const globalStyles = StyleSheet.create({
         backgroundColor: COLORS.background,
     },
     heading3: {
-        marginTop: 40,
         fontFamily: 'PoppinsBold',
         fontSize: FONTSIZES.heading3,
         fontWeight: 'bold',
