@@ -35,29 +35,28 @@ const getChallenges = async (req, res)=> {
 }
 
 const challengeDetails = async (req, res)=> {
-    console.log("HA;SDJFHASKJDFHAKSJLDFHALKSJDHF");
     if (res.locals.authenticated) {
         const {id} = req.body;
         try {
-            res.writeHead(200, {'Content-Type':'application/json'});
-            const data = await Challenge.find({_id:id});
-            const dataJSON = JSON.stringify(data);
-            console.log("this is the challenge",dataJSON);
-            res.write(dataJSON);
+            const data = await Challenge.findOne({_id:id});
+            console.log("this is the data", data);
+            return res.json({
+                success: true,
+                details: data
+            })
         }
         catch (error) {
-            console.log("db closed");
-            console.log(error)
+            return res.json({
+                success: false,
+                message: error
+            })
         }
-        res.end()
     }
     else {
-        const responseData = {
+       return res.json({
             success: false,
             message: "Could not validate user"
-        };
-        res.write(JSON.stringify(responseData))
-        res.end();
+        });
        }
 }
 

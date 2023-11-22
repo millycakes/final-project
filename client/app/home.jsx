@@ -103,7 +103,7 @@ function home() {
                         <TouchableOpacity
                             style={styles.challenge} 
                             key={challenge._id}
-                            onPress={() => router.push(`/challenge-details/${challenge._id}`)}
+                            onPress={() => router.push({pathname:'/challengedet', params:{id: challenge._id}})}
                         >
                             <View style={styles.challengeImg}></View>
                             <View style={styles.metadata}>
@@ -124,7 +124,7 @@ function home() {
                         <TouchableOpacity
                             style={styles.challenge} 
                             key={challenge._id}
-                            onPress={() => router.push(`/challenge-details/${challenge._id}`)}
+                            onPress={() => router.push({pathname:'/challengedet', params:{id: challenge._id}})}
                         >
                             <View style={styles.challengeImg}></View>
                             <View style={styles.metadata}>

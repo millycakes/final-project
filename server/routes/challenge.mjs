@@ -8,7 +8,7 @@ const challengeRouter = express.Router();
 
 challengeRouter.get('/getChallenges', checkAuth, getChallenges);
 
-challengeRouter.get('/challengeDetails', checkAuth, challengeDetails);
+challengeRouter.post('/challengeDetails', checkAuth, challengeDetails);
 
 export {
     challengeRouter
