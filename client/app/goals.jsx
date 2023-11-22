@@ -1,4 +1,4 @@
-import { FlatList, Text, View, Image,TouchableOpacity, StyleSheet } from 'react-native'
+import { Dimensions, FlatList, Text, View, Image,TouchableOpacity, StyleSheet } from 'react-native'
 import Button from '../common/Button'
 import icons from '../constants/goalIcons'
 import { COLORS, FONTSIZES } from '../constants/theme'
@@ -7,6 +7,10 @@ import { useState } from 'react'
 import { globalStyles } from '../styles/global'
 
 //TODO: make it so that user can choose multiple goals
+
+const screenWidth = Dimensions.get('window').width;
+const availableSpace = screenWidth - 40 - (2 - 1) * 8;
+const itemSize = availableSpace / 2;  
 
 function goals () {
   const goals = ["Fitness", "Diet", "Lifestyle", "Productivity", "Self-Care", "Hobby", "Wellness", "Finance"]
@@ -25,6 +29,8 @@ function goals () {
           data={goals}
           horizontal={false}
           numColumns={2}
+          columnWrapperStyle={{ gap: 8}}
+          contentContainerStyle={{ gap: 8 }}
           renderItem={({ item, index }) => (
             <TouchableOpacity 
               style={styles.optionCard(index, chosenGoal, item)}
@@ -56,7 +62,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: colors[index],
     borderRadius: 8,
-    width: '50%',
+    width: itemSize,
     height: 80,
     paddingLeft: 16,
     paddingRight: 8,
