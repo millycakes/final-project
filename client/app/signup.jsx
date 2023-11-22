@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import { View,TextInput, Text } from 'react-native';
+import { View, Text, SafeAreaView } from 'react-native';
 import client from '../api/client';
 import {FIREBASE_AUTH} from '../firebase/config';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import {useRouter } from 'expo-router'
 import { globalStyles } from '../styles/global';
-import Button from '../common/Button'
+import Button from '../components/common/Button'
+import { Eye } from 'react-native-feather';
+import { COLORS } from '../constants/theme';
+import Input from '../components/common/Input';
 
 function signup() {
     const [email, setEmail] = useState();
@@ -44,32 +47,29 @@ function signup() {
     }
 
     return (
-        <View style={globalStyles.container}>
-            <Text style={globalStyles.heading3}>Welcome to CheckMate</Text>
-            <Text style={globalStyles.bodyDefault}>Create an account to join challenges and earn rewards </Text>
-            <Text style={globalStyles.label}>Email</Text>
-            <TextInput
-                style={globalStyles.input}
-                onChangeText={setEmail}
-                placeholder="Email"
-                value={email}
-                autoCapitalize="none"
-                autoCorrect={false}
-            />
-            <Text style={globalStyles.label}>Password</Text>
-            <TextInput
-                style={globalStyles.input}
-                onChangeText={setPassword}
-                placeholder='Password'
-                value={password}
-                autoCapitalize="none"
-                autoCorrect={false}
-            />
-            <Button
-                title="Sign Up"
-                onPress={onSubmitFormHandler}
-            />
-        </View>
+        <SafeAreaView style={globalStyles.safeArea}>
+            <View style={globalStyles.container}>
+                <Text style={globalStyles.heading3}>Welcome to CheckMate</Text>
+                <Text style={globalStyles.bodyDefault}>Create an account to join challenges and earn rewards </Text>
+                <Input 
+                    label="Email"
+                    placeholder="Email"
+                    value={email}
+                    onChangeText={setEmail}
+                />
+                <Input 
+                    label="Password"
+                    placeholder="Password"
+                    value={password}
+                    onChangeText={setPassword}
+                    icon={<Eye stroke={COLORS.gray500}/>}
+                />
+                <Button
+                    title="Sign Up"
+                    onPress={onSubmitFormHandler}
+                />
+            </View>
+        </SafeAreaView>
     )
 }
 

@@ -22,8 +22,16 @@ const Layout = () => {
     }
     
     return (
-        <Stack initialRouteName="welcome" onLayout={onLayoutRootView}>
-            <Stack.Screen name="welcome"/>
+        <Stack 
+            initialRouteName="welcome" onLayout={onLayoutRootView}
+        >
+            <Stack.Screen 
+                name="welcome"
+                options={{
+                headerStyle: {
+                    display: 'none'
+                },}}
+            />
         </Stack>
     )
 }

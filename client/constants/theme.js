@@ -6,6 +6,7 @@ const COLORS = {
     black: "#000000",
     background: "#FEFEFC",
     pink: "#FF71A4",
+    pinkLight: '#FFF0F5',
     yellow: "#FFDE69",
     gray800: "#2E2E2E",
     gray700: "#525252",
@@ -46,11 +47,31 @@ const SIZES = {
 --sticker:  0px 2px 8px rgba(0, 0, 0, 0.2);
  */
 const SHADOWS = {
-    default: {
-
+    shadow: {
+        ...Platform.select({
+            ios: {
+                shadowColor: '#000',
+                shadowRadius: 24,
+                shadowOffset: { width: 0, height: -4 },
+                shadowOpacity: 0.04,
+            },
+            android: {
+                elevation: 3,
+            }
+        })
     },
     sticker: {
-
+        ...Platform.select({
+            ios: {
+                shadowColor: '#000',
+                shadowRadius: 8,
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.2,
+            },
+            android: {
+                elevation: 3,
+            }
+        })
     }
 }
 const FONT = {

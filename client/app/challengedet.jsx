@@ -1,4 +1,4 @@
-import { View, Text } from "react-native"
+import { View, Text, SafeAreaView } from "react-native"
 import { Stack, useRouter, useLocalSearchParams } from 'expo-router'
 import { useState, useEffect } from "react";
 import client from "../api/client";
@@ -39,6 +39,7 @@ function ChallengeDetails() {
     }, []);
     
     return (
+        <SafeAreaView style={globalStyles.safeArea}>
         <View style={globalStyles.container}>
             <Text style={globalStyles.heading1}>
                 {challenge.title}
@@ -50,6 +51,7 @@ function ChallengeDetails() {
                 {challenge.description}
             </Text>
         </View>
+        </SafeAreaView>
     )
 }
 

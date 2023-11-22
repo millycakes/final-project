@@ -1,5 +1,5 @@
-import { Dimensions, FlatList, Text, View, Image,TouchableOpacity, StyleSheet } from 'react-native'
-import Button from '../common/Button'
+import { Dimensions, FlatList, Text, View, Image,TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native'
+import Button from '../components/common/Button'
 import icons from '../constants/goalIcons'
 import { COLORS, FONTSIZES } from '../constants/theme'
 import { useRouter } from 'expo-router'
@@ -23,34 +23,36 @@ function goals () {
   }
   
     return (
-      <View style={globalStyles.container}>
-        <Text style={globalStyles.heading3}>What kind of goals are you interested in?</Text>
-        <FlatList
-          data={goals}
-          horizontal={false}
-          numColumns={2}
-          columnWrapperStyle={{ gap: 8}}
-          contentContainerStyle={{ gap: 8 }}
-          renderItem={({ item, index }) => (
-            <TouchableOpacity 
-              style={styles.optionCard(index, chosenGoal, item)}
-              onPress={() => {
-                setChosenGoal(item)
-              }}
-            >
-              <Text >{item}</Text>
-              <Image
-                source={goalIcons[index]}
-              />
-            </TouchableOpacity>
-          )}
-          keyExtractor={(item) => item}
-        />
-        <Button
-          title="Continue"
-          onPress={onSubmitFormHandler}
-        />
-      </View>
+      <SafeAreaView style={globalStyles.safeArea}>
+        <View style={globalStyles.container}>
+          <Text style={globalStyles.heading3}>What kind of goals are you interested in?</Text>
+          <FlatList
+            data={goals}
+            horizontal={false}
+            numColumns={2}
+            columnWrapperStyle={{ gap: 8}}
+            contentContainerStyle={{ gap: 8 }}
+            renderItem={({ item, index }) => (
+              <TouchableOpacity 
+                style={styles.optionCard(index, chosenGoal, item)}
+                onPress={() => {
+                  setChosenGoal(item)
+                }}
+              >
+                <Text >{item}</Text>
+                <Image
+                  source={goalIcons[index]}
+                />
+              </TouchableOpacity>
+            )}
+            keyExtractor={(item) => item}
+          />
+          <Button
+            title="Continue"
+            onPress={onSubmitFormHandler}
+          />
+        </View>
+      </SafeAreaView>
     )
 }
 

@@ -5,7 +5,7 @@ const Challenge = mongoose.model('Challenge');
 const User = mongoose.model('User');
 
 const getChallenges = async (req, res)=> {
-   if (res.locals.uid) {
+    if (res.locals.uid) {
         try {
             const user = await User.findOne({uid: res.locals.uid});
             const challenges = await Challenge.find({_id: { $nin: user.rec_challenges }});
@@ -25,13 +25,13 @@ const getChallenges = async (req, res)=> {
                 error: error
             })
         }
-   }
-   else {
+    }
+    else {
         return res.json({
             success: false,
             error: "Could not validate user"
         });
-   }
+    }
 }
 
 const challengeDetails = async (req, res)=> {
@@ -53,11 +53,11 @@ const challengeDetails = async (req, res)=> {
         }
     }
     else {
-       return res.json({
+        return res.json({
             success: false,
             message: "Could not validate user"
         });
-       }
+    }
 }
 
 export{

@@ -1,5 +1,5 @@
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
-import { COLORS, FONT, FONTSIZES, SIZES, SHADOWS } from "../constants/theme";
+import { COLORS, FONT, FONTSIZES, SIZES, SHADOWS } from "../../constants/theme";
 
 
 function Button ({ title, onPress }) {
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         borderRadius: 32,
         padding: 16,
         position: 'absolute',
-        bottom:40,
+        bottom: 20,
         left: 20,
         right: 20
     },

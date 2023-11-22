@@ -18,7 +18,10 @@ export const globalStyles = StyleSheet.create({
     container: {
         flex: 1,
         paddingLeft: 20,
-        paddingRight: 20,
+        paddingRight: 20
+    },
+    safeArea: {
+        flex: 1,
         backgroundColor: COLORS.background,
     },
     heading3: {
@@ -47,21 +50,19 @@ export const globalStyles = StyleSheet.create({
     optionText: {
         fontSize: 16
     },
-    input: {
-        padding: 16,
-        backgroundColor: COLORS.gray200,
-        borderRadius: 8,
-        marginBottom: 24
-    },
-    label: {
-        fontFamily: 'PoppinsBold',
-        fontSize: FONTSIZES.bodyMedium,
-        color: COLORS.black,
-        marginBottom: 8
-    },
     bodyDefault: {
         fontFamily: 'PoppinsRegular',
         fontSize: FONTSIZES.body,
+        color: COLORS.gray700
+    },
+    bodyMedium: {
+        fontFamily: 'PoppinsRegular',
+        fontSize: FONTSIZES.bodyMedium,
+        color: COLORS.gray700
+    },
+    bodySmall: {
+        fontFamily: 'PoppinsRegular',
+        fontSize: FONTSIZES.bodySmall,
         color: COLORS.gray700
     },
     search: {
@@ -72,5 +73,10 @@ export const globalStyles = StyleSheet.create({
         paddingHorizontal: 16,
         paddingVertical: 12,
         marginBottom: 12
+    },
+    line: {
+        borderBottomColor: COLORS.gray300,
+        borderBottomWidth: 1,
+        width: '46%'
     }
 })

@@ -1,7 +1,7 @@
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from "react-native"
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, SafeAreaView } from "react-native"
 import { COLORS, FONTSIZES } from '../constants/theme'
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router'
-import Button from "../common/Button"
+import Button from "../components/common/Button"
 import { useState } from "react"
 import { globalStyles } from "../styles/global"
 
@@ -29,6 +29,7 @@ function experience() {
     }
 
     return (
+        <SafeAreaView style={globalStyles.safeArea}>
         <View style={globalStyles.container}>
             <Text style={globalStyles.heading3}>How much experience do you have with personal goals?</Text>
             <View>
@@ -51,6 +52,7 @@ function experience() {
                 onPress={onSubmitFormHandler}
             />
         </View>
+        </SafeAreaView>
     )
 }
 

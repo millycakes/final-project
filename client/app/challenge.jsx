@@ -1,7 +1,7 @@
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from "react-native"
-import { COLORS, FONTSIZES } from '../constants/theme'
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, SafeAreaView } from "react-native"
+import { COLORS } from '../constants/theme'
 import { useRouter,useLocalSearchParams } from 'expo-router'
-import Button from "../common/Button"
+import Button from '../components/common/Button'
 import { useState } from "react";
 import client from '../api/client';
 import {FIREBASE_AUTH} from '../firebase/config';
@@ -53,6 +53,8 @@ function challenge() {
     }
 
     return (
+        <SafeAreaView style={globalStyles.safeArea}>
+
         <View style={globalStyles.container}>
             <Text style={globalStyles.heading3}>What is your biggest challenge when it comes to your goals?</Text>
             <View>
@@ -75,6 +77,7 @@ function challenge() {
                 onPress={onSubmitFormHandler}
             />
         </View>
+        </SafeAreaView>
     )
 }
 

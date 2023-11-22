@@ -55,7 +55,16 @@ const Challenge = new mongoose.Schema({
     title: String,
     description: String,
     duration: String,
+    likes: Number,
+    participants: Number,
     challengePhotos: [Buffer],
+    challengeReviews: {
+        user: String,
+        rating: Number,
+        review: String,
+        date: {type: Date, default: Date.now}
+    },
+    challengeProofs: [Buffer],
     completed: Boolean,
     category: String
 })

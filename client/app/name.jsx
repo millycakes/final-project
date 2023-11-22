@@ -1,11 +1,12 @@
 import { useRouter } from 'expo-router';
-import { View,TextInput,Text } from 'react-native';
+import { View,TextInput,Text, SafeAreaView } from 'react-native';
 import {FIREBASE_AUTH} from '../firebase/config';
 import { useState } from 'react';
 import client from '../api/client';
 import { updateProfile } from "firebase/auth";
 import { globalStyles } from '../styles/global';
-import Button from '../common/Button';
+import Button from '../components/common/Button'
+import Input from '../components/common/Input';
 
 //TODO: Add secure header using firebase
 
@@ -44,6 +45,7 @@ function name() {
     }
 
     return (
+      <SafeAreaView style={globalStyles.safeArea}>
         <View style={globalStyles.container}>
             <Text style={globalStyles.heading3}>
                 What is your name?
@@ -51,27 +53,24 @@ function name() {
             <Text style={globalStyles.bodyDefault}>
               Tell us a little bit about yourself
             </Text>
-            <Text style={globalStyles.label}>First Name</Text>
-            <TextInput
-              placeholder='First Name'
-              style={globalStyles.input}
-              onChangeText={setFirstname}
+            <Input 
+              label="First Name"
+              placeholder="First Name"
               value={firstname}
-              autoCorrect={false}
-            />
-            <Text style={globalStyles.label}>Last Name</Text>
-            <TextInput
-              placeholder='Last Name'
-              style={globalStyles.input}
-              onChangeText={setLastname}
+              onChangeText={setFirstname}
+              />
+            <Input 
+              label="Last Name"
+              placeholder="Last Name"
               value={lastname}
-              autoCorrect={false}
+              onChangeText={setLastname}
             />
             <Button
                 title="Continue"
                 onPress={onSubmitFormHandler}
             />
         </View>
+      </SafeAreaView>
     )
 }
 
