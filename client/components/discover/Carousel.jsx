@@ -6,6 +6,7 @@ import { ChevronRight } from 'react-native-feather'
 import { COLORS } from '../../constants/theme'
 
 const Carousel = ({title, challenges}) => {
+    if (challenges.length === 0) return;
     return (
         <>
             <View style={styles.category}>

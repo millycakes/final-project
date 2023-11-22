@@ -8,6 +8,7 @@ const COLORS = {
     pink: "#FF71A4",
     pinkLight: '#FFF0F5',
     yellow: "#FFDE69",
+    yellowLight: '#FFF8E1',
     gray800: "#2E2E2E",
     gray700: "#525252",
     gray600: "#727272",
@@ -30,16 +31,6 @@ const FONTSIZES = {
     bodySmall: 12,
     button: 16,
     buttonSmall: 14
-};
-
-
-const SIZES = {
-    xSmall: 8,
-    small: 12,
-    medium: 16,
-    large: 24,
-    xLarge: 32,
-    xxLarge: 48
 };
 
 /**
@@ -79,4 +70,4 @@ const FONT = {
     bold: "PopBold"
   };
 
-export { COLORS, FONT, FONTSIZES, SIZES, SHADOWS };
+export { COLORS, FONT, FONTSIZES, SHADOWS };

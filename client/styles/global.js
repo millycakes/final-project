@@ -27,9 +27,19 @@ export const globalStyles = StyleSheet.create({
         fontSize: FONTSIZES.heading3,
         fontWeight: 'bold',
     },
+    heading4: {
+        fontFamily: 'PoppinsBold',
+        fontSize: FONTSIZES.heading4,
+        fontWeight: 'bold',
+    },
     heading5: {
         fontFamily: 'PoppinsBold',
         fontSize: FONTSIZES.heading5,
+        fontWeight: 'bold',
+    },
+    heading6: {
+        fontFamily: 'PoppinsBold',
+        fontSize: FONTSIZES.heading6,
         fontWeight: 'bold',
     },
     option: (chosenExp, item) => ({

@@ -1,7 +1,7 @@
 import { Dimensions, FlatList, Text, View, Image,TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native'
 import Button from '../components/common/Button'
 import icons from '../constants/goalIcons'
-import { COLORS, FONTSIZES } from '../constants/theme'
+import { COLORS } from '../constants/theme'
 import { useRouter } from 'expo-router'
 import { useState } from 'react'
 import { globalStyles } from '../styles/global'

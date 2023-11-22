@@ -1,9 +1,11 @@
 import { View, Text, Image, StyleSheet, SafeAreaView } from 'react-native'
 import Button from '../components/common/Button'
-import { FONTSIZES } from '../constants/theme'
 import {FIREBASE_AUTH} from '../firebase/config';
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import { globalStyles } from '../styles/global';
+import Summary from '../components/accountSetup/Summary';
+import icons from '../constants/icons'
+import { COLORS } from '../constants/theme';
 
 function confirmation() {
     const router = useRouter();
@@ -12,15 +14,29 @@ function confirmation() {
 
     return (
         <SafeAreaView style={globalStyles.safeArea}>
-            <View style={globalStyles.container}>
-                <Text style={styles.heading}>Ready to start crushing your goals?</Text>
-                <Text style={styles.heading}>{FIREBASE_AUTH.currentUser.displayName}</Text>
-                <Text style={styles.heading}>Interest</Text>
-                <Text style={styles.description}>{goals}</Text>
-                <Text style={styles.heading}>Experience</Text>
-                <Text style={styles.description}>{experience}</Text>
-                <Text style={styles.heading}>Focus</Text>
-                <Text style={styles.description}>{challenge}</Text>
+            <View style={[globalStyles.container, styles.confirmation]}>
+                <Text style={globalStyles.heading2}>Ready to start crushing your goals?</Text>
+                <Text style={globalStyles.heading5}>{FIREBASE_AUTH.currentUser.displayName}</Text>
+                <View style={styles.summary}>
+                    <Summary 
+                        image={icons.interest}
+                        category="Interest"
+                        text={goals}
+                        color={COLORS.pinkLight}
+                    />
+                    <Summary 
+                        image={icons.experience}
+                        category="Experience"
+                        text={experience}
+                        color={COLORS.yellowLight}
+                    />
+                    <Summary 
+                        image={icons.focus}
+                        category="Focus"
+                        text={challenge}
+                        color={COLORS.accentLight}
+                    />
+                </View>
                 <Button 
                     title="GET STARTED"
                     onPress={() => router.push("/discover")}
@@ -32,21 +48,12 @@ function confirmation() {
 
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginLeft: 20,
-        marginRight: 20
+    confirmation: {
+        display: 'flex',
+        alignItems: 'center'
     },
-    heading: {
-        marginTop: 40,
-        textAlign: 'center',
-        fontSize: FONTSIZES.heading2,
-        fontWeight: 'bold'
-    },
-    description: {
-        marginTop: 12,
-        textAlign: 'center',
-        fontSize: FONTSIZES.body
+    summary: {
+        marginTop: 40
     }
 })
 
