@@ -30,7 +30,7 @@ const Layout = () => {
                 options={{
                 headerStyle: {
                     display: 'none'
-                },}}
+                }}}
             />
         </Stack>
     )

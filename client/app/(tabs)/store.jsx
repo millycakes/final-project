@@ -1,11 +1,14 @@
-import { View, Text } from 'react-native'
+import { View, Text, SafeAreaView } from 'react-native'
 import React from 'react'
+import { globalStyles } from '../../styles/global'
 
 const store = () => {
   return (
-    <View>
-      <Text>store</Text>
-    </View>
+    <SafeAreaView style={globalStyles.safeArea}>
+      <View style={globalStyles.container}>
+        <Text>store</Text>
+      </View>
+    </SafeAreaView>
   )
 }
 

@@ -1,5 +1,4 @@
 import React from 'react'
-import { useRouter } from 'expo-router'
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView, FlatList, Image} from 'react-native'
 import { globalStyles } from '../../styles/global';
 import client from '../../api/client';
@@ -8,8 +7,9 @@ import { COLORS } from '../../constants/theme'
 import icons from '../../constants/goalIcons'
 import {FIREBASE_AUTH} from '../../firebase/config'; 
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Carousel from '../../components/discover/Carousel';
 
-function home() {
+function discover() {
     const goals = ["Fitness", "Diet", "Lifestyle", "Productivity", "Self-Care", "Hobby", "Wellness", "Finance"]
     const goalIcons = [icons.fitness, icons.diet, icons.lifestyle, icons.productivity, icons.selfCare, icons.hobby, icons.wellness, icons.finance]
     const [chosenGoal, setChosenGoal] = useState("");
@@ -59,9 +59,6 @@ function home() {
         setFilteredChallenges(challengeCopy);
     }, [search, chosenGoal])
 
-
-    const router = useRouter()
-
     return (
         <SafeAreaView style={globalStyles.safeArea}>
             <ScrollView style={globalStyles.container}>
@@ -78,7 +75,7 @@ function home() {
                 <FlatList
                     data={goals}
                     horizontal={true}
-                    style={styles.goals}
+                    style={styles.categories}
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item, index }) => (
                         <TouchableOpacity 
@@ -90,71 +87,35 @@ function home() {
                                 setChosenGoal(item)
                             }}
                         >
-                            <View style={styles.categoryIcon(chosenGoal, item)}
-                            >
-                            <Image 
-                                source={goalIcons[index]}
-                            />
+                            <View style={styles.categoryIcon(chosenGoal, item)}>
+                            <Image source={goalIcons[index]}/>
                             </View>
-                            <Text
-                                style={styles.categoryName}    
-                            >
-                                {item}
-                            </Text>
+                            <Text style={styles.categoryName}>{item}</Text>
                         </TouchableOpacity>
                     )}
                     keyExtractor={(item) => item}
                     />
-                <Text style={globalStyles.heading3}>Recommended For You</Text>
-                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                {
-                    recommended.map((challenge) => {
-                        return (
-                            <TouchableOpacity
-                                style={styles.challenge} 
-                                key={challenge._id}
-                                onPress={() => router.push({pathname:'/challengedet', params:{id: challenge._id}})}
-                            >
-                                <View style={styles.challengeImg}></View>
-                                <View style={styles.metadata}>
-                                    <Text style={styles.chip}>{challenge.duration}</Text>
-                                    <Text>{challenge.category}</Text>
-                                </View>
-                                <Text style={globalStyles.heading5}>{challenge.title}</Text>
-                            </TouchableOpacity>
-                        )
-                    })
-                }
-                </ScrollView>
-                <Text style={globalStyles.heading3}>All Challenges</Text>
-                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                {
-                    filteredChallenges.map((challenge) => {
-                        return (
-                            <TouchableOpacity
-                                style={styles.challenge} 
-                                key={challenge._id}
-                                onPress={() => router.push({pathname:'/challengedet', params:{id: challenge._id}})}
-                            >
-                                <View style={styles.challengeImg}></View>
-                                <View style={styles.metadata}>
-                                    <Text style={styles.chip}>{challenge.duration}</Text>
-                                    <Text style={styles.chip}>{challenge.category}</Text>
-                                </View>
-                                <Text style={globalStyles.heading5}>{challenge.title}</Text>
-                            </TouchableOpacity>
-                        )
-                    })
-                }
-                </ScrollView>
-                </ScrollView>
-            </SafeAreaView>
+                <Carousel
+                    title="Recommended For You"
+                    challenges={recommended}
+                />
+                <Carousel
+                    title="All Challenges"
+                    challenges={filteredChallenges}
+                />
+                <Carousel
+                    title="Popular Challenges"
+                    challenges={filteredChallenges}
+                />
+            </ScrollView>
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
-    goals: {
-        maxHeight: 80
+    categories: {
+        maxHeight: 80,
+        marginBottom: 24
     },
     category: {
         display: 'flex',
@@ -168,30 +129,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 4,
         paddingVertical: 4,
         borderRadius: '100%'
-    }),
-    challenge: {
-        marginRight: 16
-    },
-    challengeImg: {
-        width: 240,
-        height: 148,
-        backgroundColor: COLORS.gray300,
-        borderRadius: 12,
-        marginBottom: 8
-    },
-    metadata: {
-        display: 'flex',
-        flexDirection: 'row',
-        gap: 4,
-        marginBottom: 8
-    },
-    chip: {
-        backgroundColor: COLORS.gray200,
-        color: COLORS.gray700,
-        paddingHorizontal: 4,
-        paddingVertical: 2,
-        borderRadius: 4
-    }
+    })
+    
 })
 
-export default home
+export default discover

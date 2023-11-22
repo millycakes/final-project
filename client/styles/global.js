@@ -7,13 +7,11 @@ export const globalStyles = StyleSheet.create({
         fontFamily: 'PoppinsBold',
         fontSize: FONTSIZES.heading1,
         fontWeight: 'bold',
-        marginBottom: 24.
     },
     heading2: {
         fontFamily: 'PoppinsBold',
         fontSize: FONTSIZES.heading2,
         fontWeight: 'bold',
-        marginBottom: 24.
     },
     container: {
         flex: 1,
@@ -28,13 +26,11 @@ export const globalStyles = StyleSheet.create({
         fontFamily: 'PoppinsBold',
         fontSize: FONTSIZES.heading3,
         fontWeight: 'bold',
-        marginBottom: 8.
     },
     heading5: {
         fontFamily: 'PoppinsBold',
         fontSize: FONTSIZES.heading5,
         fontWeight: 'bold',
-        marginBottom: 8.
     },
     option: (chosenExp, item) => ({
         backgroundColor: COLORS.gray200,

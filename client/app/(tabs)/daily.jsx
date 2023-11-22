@@ -6,8 +6,8 @@ import Task from '../../components/daily/Task'
 const daily = () => {
     return (
         <SafeAreaView style={globalStyles.safeArea}>
-            <Text style={globalStyles.heading5}>Incomplete</Text>
             <View style={globalStyles.container}>
+            <Text style={globalStyles.heading5}>Incomplete</Text>
                 <Task 
                     title = "Wake Up At 7:00 AM"
                     image = ""
@@ -17,6 +17,5 @@ const daily = () => {
         </SafeAreaView>
     )
 }
-
 
 export default daily
