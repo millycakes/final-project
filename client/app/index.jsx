@@ -6,11 +6,11 @@ export default function Index() {
 
   if (Platform.OS === "ios") {
     setTimeout(() => {
-      router.replace("/welcome");
+      router.replace("/daily");
     }, 1)
   } else {
     setImmediate(() => {
-      router.replace("/welcome");
+      router.replace("/daily");
     });
   }
 }

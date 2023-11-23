@@ -13,7 +13,7 @@ const Task = ({title, image, deadline, complete}) => {
                     <Text style={globalStyles.heading5}>{title}</Text>
                     <View style={styles.deadline}>
                         <Clock width={16} height={16} stroke={COLORS.gray600}/>
-                        <Text style={globalStyles.bodyMedium}>Due in {deadline}</Text>
+                        <Text style={globalStyles.bodyMedium}>Due in</Text>
                     </View>
                 </View>
                 <ChevronRight stroke={COLORS.black} />

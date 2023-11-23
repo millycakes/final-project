@@ -60,8 +60,8 @@ function discover() {
     }, [search, chosenGoal])
 
     return (
-        <SafeAreaView style={globalStyles.safeArea}>
-            <ScrollView style={globalStyles.container}>
+        // <SafeAreaView style={globalStyles.safeArea}>
+            <ScrollView style={[globalStyles.container, globalStyles.safeArea]}>
                 <View style={globalStyles.search}>
                     <TextInput 
                         value = {search}
@@ -108,7 +108,7 @@ function discover() {
                     challenges={filteredChallenges}
                 />
             </ScrollView>
-        </SafeAreaView>
+        // </SafeAreaView>
     )
 }
 
