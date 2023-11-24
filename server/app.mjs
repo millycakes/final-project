@@ -22,6 +22,8 @@ app.use(express.json());
 app.use(router);
 app.use(challengeRouter);
 
+//TODO: create initializations for all Challenges -- must be removed when released on app store
+
 app.listen(process.env.PORT || 3000);
 
 export{

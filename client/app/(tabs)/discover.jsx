@@ -30,14 +30,14 @@ function discover() {
                         setRecommended(response.data.recChallenges);
                     }
                     else {
-                        alert("error 2",response.error);
+                        alert(response.error);
                     }
                 } catch (error) {
-                    alert("error 4",error);
+                    alert(error);
                 }
             })
             .catch(error => {
-                alert("error 3", error);
+                alert(error);
             });
         fetch;
     }, []);
