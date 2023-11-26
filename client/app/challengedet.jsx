@@ -40,27 +40,8 @@ function ChallengeDetails() {
         challengeDetails;
     }, []);
 
-    const onSubmitFormHandler = async (e) =>{
-        FIREBASE_AUTH.currentUser.getIdToken(true).then(async (idToken)=>{
-            const res = await client.post('/enterChallenge', {
-                challenge: challenge,
-                startdate: moment().toDate(),
-                enddate: moment().add(6,'days').hour(23).minute(59).second(59).millisecond(999).toDate()
-            },
-            {
-                headers: {
-                    authtoken: idToken,
-                }
-            });
-            if (res.data.success) {
-                console.log("yay!")
-            }
-            else {
-                alert(res.data.message);
-            }
-        }).catch(function(error) {
-            alert(error);
-        });
+    const onSubmitFormHandler = (e) =>{
+        router.push({pathname: "/rules", params: {challenge: JSON.stringify(challenge)}});
     }
     
     return (
