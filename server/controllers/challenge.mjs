@@ -20,7 +20,7 @@ const getChallenges = async (req, res)=> {
             })
         }
         catch (error) {
-            console.log("i has error", error);
+            console.log("error:", error);
             return res.json({
                 success: false,
                 error: error
@@ -66,7 +66,7 @@ const enterChallenge = async (req,res) =>{
         const {challengeId, startdate, enddate} = req.body;
         const data = await Challenge.findOne({_id: new ObjectId(challengeId)});
         if (data) {
-            const newChallenge = new userChallenge({challenge: data, startDate: new Date(startdate), endDate: new Date(enddate), challengePhotos:[], completed: false});
+            const newChallenge = new userChallenge({title: data.title, photo: data.photo, challenge: data, startDate: new Date(startdate), endDate: new Date(enddate), challengePhotos:[], completed: false});
             await newChallenge.save();
             const user = await User.findOne({uid: res.locals.uid});
             user.curr_challenges.push(newChallenge);
@@ -117,8 +117,48 @@ const enterChallenge = async (req,res) =>{
     }
 }
 
+const getCalendarChallenges = async (req,res)=>{
+    if (res.locals.authenticated) {
+        try {
+            const user = await User.findOne({uid: res.locals.uid});
+            const currChallenges = await userChallenge.find({_id: {$in:user.curr_challenges}});
+            console.log(currChallenges);
+            const start = new Date();
+            const challenges = [];
+            for (let i = 0; i<7; i++) {
+                let current = new Date(start);
+                current.setDate(start.getDate() + i);
+                let arr = [];
+                for (let t = 0; t<currChallenges.length; t++) {
+                    if (currChallenges[t]["startDate"]<=current && currChallenges[t]["endDate"]>=current) {
+                        arr.push(currChallenges[t]);
+                    }
+                }
+                challenges.push(arr);
+            }
+            return res.json({
+                success: true,
+                challenges: challenges
+            })
+        }
+        catch (err) {
+            return res.json({
+                success: false,
+                message: err
+            });
+        }
+    }
+    else {
+        return res.json({
+            success: false,
+            message: "Could not validate user"
+        });
+    }
+}
+
 export{
     getChallenges,
     challengeDetails,
-    enterChallenge
+    enterChallenge,
+    getCalendarChallenges
 };

@@ -53,6 +53,7 @@ const User = new mongoose.Schema({
 //challenge schema
 const Challenge = new mongoose.Schema({
     title: String,
+    photo: Buffer,
     description: String,
     duration: String,
     likes: Number,
@@ -72,6 +73,8 @@ const Challenge = new mongoose.Schema({
 })
 
 const userChallenge = new mongoose.Schema({
+    title: String,
+    photo: Buffer,
     challenge: { type: Schema.Types.ObjectId, ref: 'Challenge' },
     startDate: Date,
     endDate: Date,
