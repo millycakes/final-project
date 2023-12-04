@@ -1,11 +1,11 @@
-import { View, Text, SafeAreaView,Button } from "react-native"
+import { View, Text, SafeAreaView } from "react-native"
 import { Stack, useRouter, useLocalSearchParams } from 'expo-router'
 import { useState, useEffect } from "react";
 import client from "../api/client";
 import { globalStyles } from "../styles/global";
 import {FIREBASE_AUTH} from '../firebase/config'; 
 import moment from 'moment';
-
+import Button from '../components/common/Button'
 
 function ChallengeDetails() {
     const params = useLocalSearchParams();

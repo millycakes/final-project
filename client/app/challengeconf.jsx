@@ -1,8 +1,10 @@
 import React from 'react';
-import { Text,ScrollView,Button } from 'react-native';
+import { Text,ScrollView, View } from 'react-native';
 import { globalStyles } from '../styles/global';
 import Task from '../components/daily/Task'
 import { useRouter,useLocalSearchParams } from 'expo-router';
+import Button from '../components/common/Button';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function rules() {
     const router = useRouter();
@@ -19,8 +21,9 @@ function rules() {
     }
     //in backend, need to add images to each challenge
     return (
-    <ScrollView style={[globalStyles.container, globalStyles.safeArea]}>
-        <Text style={globalStyles.heading1}>You successfully joined the challenge!</Text>
+    <SafeAreaView style={[globalStyles.safeArea, globalStyles.safeArea]}>
+        <View style={globalStyles.container}>
+        <Text style={globalStyles.heading3}>You successfully joined the challenge!</Text>
         <Text style = {globalStyles.bodyDefault}>Great job for taking the first step to becoming your better self</Text>
         <Text style = {globalStyles.heading3}>{currChallenge.title}</Text>
         <Text style = {globalStyles.bodyDefault}>{currStart+"-"+currEnd}</Text>
@@ -28,7 +31,8 @@ function rules() {
             title = {"Done"}
             onPress = {onSubmitFormHandler}
         />
-    </ScrollView>
+        </View>
+    </SafeAreaView>
     )
 }
 

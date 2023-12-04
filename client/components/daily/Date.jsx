@@ -9,6 +9,7 @@ const Date = ({ date, onSelectDate, selected }) => {
   const day = moment(date).format('ddd')
   const dayNumber = moment(date).format('D')
   const fullDate = moment(date).format('YYYY-MM-DD')
+  
   return (
     <TouchableOpacity
       onPress={() => onSelectDate(fullDate)}

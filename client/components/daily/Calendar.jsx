@@ -51,7 +51,7 @@ const Calendar = ({ onSelectDate, selected }) => {
               key={index}
               date={date}
               onSelectDate={onSelectDate}
-              selected={selected}
+              selected={selected.format('YYYY-MM-DD')}
             />
           ))}
       </View>
