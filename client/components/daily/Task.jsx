@@ -3,18 +3,31 @@ import React from 'react'
 import { COLORS } from '../../constants/theme'
 import { globalStyles } from '../../styles/global'
 import { Clock, ChevronRight } from 'react-native-feather'
+import Button from '../common/Button'
+import { useRouter } from 'expo-router'
 
 const Task = ({title, image, deadline, complete}) => {
+    const router = useRouter();
+    const onSubmitFormHandler = async (e)=>{
+        router.push({pathname: "/camera"});
+    }
+
     return (
         <TouchableOpacity style={styles.card}>
             <View style={styles.image}></View>
             <View style={styles.details}>
-                <View>
+                <View style={styles.info}>
                     <Text style={globalStyles.heading5}>{title}</Text>
                     <View style={styles.deadline}>
                         <Clock width={16} height={16} stroke={COLORS.gray600}/>
                         <Text style={globalStyles.bodyMedium}>Due in</Text>
+                        
                     </View>
+                    <Button 
+                            title="Upload Proof"
+                            small={true}
+                            onPress={onSubmitFormHandler}
+                        />
                 </View>
                 <ChevronRight stroke={COLORS.black} />
             </View>
@@ -35,7 +48,7 @@ const styles = StyleSheet.create({
     image: {
         width: 64,
         height: 64,
-        backgroundColor: COLORS.gray200
+        backgroundColor: COLORS.gray300
     },
     details: {
         display: 'flex',
@@ -48,6 +61,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         gap: 8,
         alignItems: 'center'
+    },
+    info: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 4
     }
 })
 

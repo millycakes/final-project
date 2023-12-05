@@ -6,11 +6,11 @@ export default function Index() {
 
   if (Platform.OS === "ios") {
     setTimeout(() => {
-      router.replace("/signup");
+      router.replace("/camera");
     }, 1)
   } else {
     setImmediate(() => {
-      router.replace("/signup");
+      router.replace("/camera");
     });
   }
 }

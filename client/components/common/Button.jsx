@@ -1,11 +1,21 @@
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import { COLORS, FONT, FONTSIZES, SIZES, SHADOWS } from "../../constants/theme";
+import { useRouter,useLocalSearchParams } from 'expo-router';
 
-
-function Button ({ title, onPress, disabled }) {
+function Button ({ title, onPress, disabled, small }) {
     return (
-        <TouchableOpacity onPress={onPress} style={[styles.buttonContainer, disabled ? styles.disabled : '']}>
-            <Text style={[styles.buttonText, disabled ? styles.disabledText : '']}>
+        <TouchableOpacity 
+            onPress={onPress} 
+            style={[
+                styles.buttonContainer, 
+                disabled ? styles.disabled : '',
+                small ? styles.small : ''
+            ]}>
+            <Text 
+                style={[
+                    styles.buttonText, disabled ? styles.disabledText : '',
+                    small ? styles.smallText: ''
+                ]}>
                 {title}
             </Text>
         </TouchableOpacity>
@@ -34,6 +44,16 @@ const styles = StyleSheet.create({
     },
     disabledText: {
         color: COLORS.gray400
+    },
+    small: {
+        position: 'relative',
+        top: 0,
+        left: 0,
+        paddingHorizontal: 12,
+        paddingVertical: 8
+    },
+    smallText: {
+        fontSize: FONTSIZES.buttonSmall,
     }
 })
 

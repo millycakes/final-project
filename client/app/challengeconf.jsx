@@ -21,16 +21,16 @@ function rules() {
     }
     //in backend, need to add images to each challenge
     return (
-    <SafeAreaView style={[globalStyles.safeArea, globalStyles.safeArea]}>
+    <SafeAreaView style={globalStyles.safeArea}>
         <View style={globalStyles.container}>
-        <Text style={globalStyles.heading3}>You successfully joined the challenge!</Text>
-        <Text style = {globalStyles.bodyDefault}>Great job for taking the first step to becoming your better self</Text>
-        <Text style = {globalStyles.heading3}>{currChallenge.title}</Text>
-        <Text style = {globalStyles.bodyDefault}>{currStart+"-"+currEnd}</Text>
-        <Button
-            title = {"Done"}
-            onPress = {onSubmitFormHandler}
-        />
+            <Text style={globalStyles.heading3}>You successfully joined the challenge!</Text>
+            <Text style = {globalStyles.bodyDefault}>Great job for taking the first step to becoming your better self</Text>
+            <Text style = {globalStyles.heading3}>{currChallenge.title}</Text>
+            <Text style = {globalStyles.bodyDefault}>{currStart+"-"+currEnd}</Text>
+            <Button
+                title = {"Done"}
+                onPress = {onSubmitFormHandler}
+            />
         </View>
     </SafeAreaView>
     )
