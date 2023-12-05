@@ -92,7 +92,7 @@ As our original idea was very ambitious, we had to simplify our project for the 
 * (2 points) Axios
     * We used Axios in our project to enable communication between both frontend and backend. Both GET and POST requests were done via Axios.
 * (2 points) React Native
-    * We will be learning React Native (and potentially Firebase) to create the frontend and the storage database. While React and React Native share some similarities, it is still a completely different language. We also need to use React Native to provide support for iOS and Android. If we use Firebase, we will have to learn how to integrate it into the app and potentially learn how to use its cloud messaging systems.
+    * We will be learning React Native to create the frontend of Checkmate. While React and React Native share some similarities, it is still a completely different language. We used React Native to provide support for both iOS access and Android access.
  
 ### Jenna
 * (5 points) React Native
