@@ -80,8 +80,13 @@ You can test out the prototype [here](https://www.figma.com/proto/895qnnItxZDRUS
 
 ![IMG_8409](https://github.com/millycakes/final-project/assets/62906996/bf1097c9-ce58-4398-b30c-ab24097203d6)
 
+## Changes
+As our original idea was very ambitious, we had to simplify our project for the final submission. We simplified the "Join Challenge" flow and "Upload Proof" flow and removed the social elements in the app. We also used temporary placeholder images for the challenge cards. However, we are proud of our progress and are planning on continuing to build out our project!
+
 ## Research Topics
 
+
+### Emily
 * (3 points) Integrate user authentication
     * We're going to be using Firebase for user authentication. Firebase will handle creating and storing the user's email and passwords, and we will use a custom backend with MongoDB.
     * When testing out the app, you can either create your own account or use a test user account that will be provided here: ****
@@ -89,6 +94,20 @@ You can test out the prototype [here](https://www.figma.com/proto/895qnnItxZDRUS
     * We're going to be implementing a recommendation algorithm that recommends to the user challenges based on their survey preferences. We're not sure how complex we want it to be yet (and whether or not AI will be used in the recommendation). The number of points assigned here might be adjusted later on based on how complex the algorithm is.
 * (2 points) React Native
     * We will be learning React Native (and potentially Firebase) to create the frontend and the storage database. While React and React Native share some similarities, it is still a completely different language. We also need to use React Native to provide support for iOS and Android. If we use Firebase, we will have to learn how to integrate it into the app and potentially learn how to use its cloud messaging systems.
+ 
+### Jenna
+* (5 points) React Native
+  * We will be using React Native for our app's frontend. I assigned 5 points to this because this is my first time doing mobile development and I am not familiar with React Native's core components
+  * We thought React Native was a good choice for our app as we are already familiar with HTML/CSS/JS and it would enable us to deploy our app to both iOS and Android devices
+* (2 points) MongoDB Atlas/Connecting Server with Client
+  * We are using MongoDB Atlas to save and store information about our users and challenges
+  * For this, I need to learn how MongoDB Atlas works, how we can connect it to our server, and how we can send/receive data between the client and the server
+* (1 point) Expo Font
+  * I want to use Expo Font to have a custom font for our app 
+* (1 point) Expo Router
+  * I want to use Expo Router to handle routing and create a tab bar
+* (1 point) Expo Camera
+  * I want to use Expo Camera to enable users to take photos for their challenge proofs 
 
 ## [Link to Initial Main Project File](app.mjs) 
 
